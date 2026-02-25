@@ -151,7 +151,24 @@ Aim for meaningful coverage rather than 100%:
 - **CLI entry points**: 100% coverage (every branch/path)
 - **Generated code**: Lower priority — focus on the generator, not outputs
 
+### Coverage Types
+
+Track multiple coverage dimensions:
+
+1. **Line coverage** - percentage of lines executed (the minimum)
+2. **Branch coverage** - ensure all code branches (if/else, switch, ternaries) are tested
+3. **Path coverage** - test all possible execution paths through functions
+4. **Condition coverage** - each boolean sub-expression tested for true/false
+
+### Coverage in Practice
+
 Run coverage reports and look for uncovered lines — add tests for:
 1. Error paths (exception handling)
 2. Edge cases not yet covered
 3. Any `if` branches not exercised
+
+Integrate coverage tracking:
+- Add coverage to CI pipelines
+- Track coverage over time — watch for regressions
+- Fail PRs that drop coverage below threshold
+- Use tools that report uncovered areas in PR comments
