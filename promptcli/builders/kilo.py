@@ -7,16 +7,16 @@ Output layout:
   {output}/.kilocode/rules-{mode}/     ← per-mode files
 """
 
-from pathlib import Path
 import shutil
+from pathlib import Path
 
+from promptcli.builders.builder import Builder
 from promptcli.registry import (
     ALWAYS_ON,
     MODE_FILES,
-    prompt_path,
     dest_name,
+    prompt_path,
 )
-from promptcli.builders.builder import Builder
 
 
 class KiloBuilder(Builder):

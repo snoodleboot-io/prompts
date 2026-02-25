@@ -30,18 +30,18 @@ ALWAYS_ON: list[str] = [
 # key       → used as directory name suffix (rules-{key}) and CLI argument
 # display   → human-readable label for headers and list output
 MODES: dict[str, str] = {
-    "architect":   "Architect",
-    "test":        "Test",
-    "refactor":    "Refactor",
-    "document":    "Document",
-    "explain":     "Explain",
-    "migration":   "Migration",
-    "code":        "Code",
-    "review":      "Review",
-    "debug":       "Debug",
-    "ask":         "Ask",
-    "security":    "Security",
-    "compliance":  "Compliance",
+    "architect": "Architect",
+    "test": "Test",
+    "refactor": "Refactor",
+    "document": "Document",
+    "explain": "Explain",
+    "migration": "Migration",
+    "code": "Code",
+    "review": "Review",
+    "debug": "Debug",
+    "ask": "Ask",
+    "security": "Security",
+    "compliance": "Compliance",
     "orchestrator": "Orchestrator",
 }
 
@@ -108,54 +108,55 @@ MODE_FILES: dict[str, list[str]] = {
 # Each entry: (section_label, filename)
 # Filename must be in ALWAYS_ON or appear in some MODE_FILES list.
 CONCAT_ORDER: list[tuple[str, str]] = [
-    ("CORE BEHAVIORS",       "core-system.md"),
-    ("CONVENTIONS",          "core-conventions.md"),
+    ("CORE BEHAVIORS", "core-system.md"),
+    ("CONVENTIONS", "core-conventions.md"),
     ("PLANNING / ARCHITECT", "architect-scaffold.md"),
-    ("TASK BREAKDOWN",       "architect-task-breakdown.md"),
-    ("DATA MODEL",           "architect-data-model.md"),
+    ("TASK BREAKDOWN", "architect-task-breakdown.md"),
+    ("DATA MODEL", "architect-data-model.md"),
     ("FEATURE IMPLEMENTATION", "code-feature.md"),
-    ("BOILERPLATE",          "code-boilerplate.md"),
-    ("HOUSE STYLE",          "code-house-style.md"),
-    ("TESTING",              "test-strategy.md"),
-    ("REFACTORING",          "refactor-strategy.md"),
-    ("MIGRATION",            "migration-strategy.md"),
-    ("DOCUMENTATION",        "document-strategy.md"),
-    ("EXPLAIN",              "explain-strategy.md"),
-    ("CODE REVIEW",          "review-code.md"),
-    ("PERFORMANCE REVIEW",   "review-performance.md"),
+    ("BOILERPLATE", "code-boilerplate.md"),
+    ("HOUSE STYLE", "code-house-style.md"),
+    ("TESTING", "test-strategy.md"),
+    ("REFACTORING", "refactor-strategy.md"),
+    ("MIGRATION", "migration-strategy.md"),
+    ("DOCUMENTATION", "document-strategy.md"),
+    ("EXPLAIN", "explain-strategy.md"),
+    ("CODE REVIEW", "review-code.md"),
+    ("PERFORMANCE REVIEW", "review-performance.md"),
     ("ACCESSIBILITY REVIEW", "review-accessibility.md"),
-    ("SECURITY REVIEW",      "security-review.md"),
-    ("COMPLIANCE REVIEW",    "compliance-review.md"),
-    ("DEBUGGING",            "debug-root-cause.md"),
-    ("LOG ANALYSIS",         "debug-log-analysis.md"),
-    ("RUBBER DUCK",          "debug-rubber-duck.md"),
-    ("DOCS GENERATION",      "ask-docs.md"),
-    ("TEST GENERATION",      "ask-testing.md"),
-    ("DECISION LOG",         "ask-decision-log.md"),
-    ("DEVOPS",               "orchestrator-devops.md"),
-    ("META / PROCESS",       "orchestrator-meta.md"),
+    ("SECURITY REVIEW", "security-review.md"),
+    ("COMPLIANCE REVIEW", "compliance-review.md"),
+    ("DEBUGGING", "debug-root-cause.md"),
+    ("LOG ANALYSIS", "debug-log-analysis.md"),
+    ("RUBBER DUCK", "debug-rubber-duck.md"),
+    ("DOCS GENERATION", "ask-docs.md"),
+    ("TEST GENERATION", "ask-testing.md"),
+    ("DECISION LOG", "ask-decision-log.md"),
+    ("DEVOPS", "orchestrator-devops.md"),
+    ("META / PROCESS", "orchestrator-meta.md"),
 ]
 
 # ── Copilot applyTo globs ────────────────────────────────────────────────────
 # Controls which files each mode's instruction file activates for in Copilot.
 COPILOT_APPLY: dict[str, str] = {
-    "architect":   "**",
-    "test":        "**/*.test.*,**/*.spec.*,**/tests/**",
-    "refactor":    "**",
-    "document":    "**/*.md,**/*.ts,**/*.py,**/*.go",
-    "explain":     "**",
-    "migration":   "**",
-    "code":        "**",
-    "review":      "**",
-    "debug":       "**",
-    "ask":         "**",
-    "security":    "**",
-    "compliance":  "**",
+    "architect": "**",
+    "test": "**/*.test.*,**/*.spec.*,**/tests/**",
+    "refactor": "**",
+    "document": "**/*.md,**/*.ts,**/*.py,**/*.go",
+    "explain": "**",
+    "migration": "**",
+    "code": "**",
+    "review": "**",
+    "debug": "**",
+    "ask": "**",
+    "security": "**",
+    "compliance": "**",
     "orchestrator": "**/*.yml,**/*.yaml,**/Dockerfile,**/.github/**",
 }
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+
 
 def prompt_path(filename: str) -> Path:
     """Absolute path to a prompt file."""
@@ -174,9 +175,7 @@ def prompt_body(filename: str) -> str:
     start = 0
     for i, line in enumerate(lines[:3]):
         stripped = line.strip()
-        if stripped.startswith("# ") and (
-            stripped.endswith(".md") or "Behavior when" in stripped
-        ):
+        if stripped.startswith("# ") and (stripped.endswith(".md") or "Behavior when" in stripped):
             start = i + 1
         elif stripped.startswith("<!--") and stripped.endswith("-->"):
             start = i + 1
@@ -194,7 +193,7 @@ def dest_name(mode_key: str, filename: str, ext: str = ".md") -> str:
     stem = filename
     prefix = f"{mode_key}-"
     if stem.startswith(prefix):
-        stem = stem[len(prefix):]
+        stem = stem[len(prefix) :]
     if ext != ".md":
         stem = stem.replace(".md", ext)
     return stem

@@ -7,18 +7,17 @@ Output:
   {output}/.github/instructions/{mode}.instructions.md  ← per-mode with applyTo
 """
 
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
+from promptcli.builders.builder import Builder
 from promptcli.registry import (
     ALWAYS_ON,
+    COPILOT_APPLY,
     MODE_FILES,
     MODES,
-    COPILOT_APPLY,
     prompt_body,
-    prompt_path,
 )
-from promptcli.builders.builder import Builder
 
 
 class CopilotBuilder(Builder):
@@ -63,11 +62,11 @@ class CopilotBuilder(Builder):
         content = "\n".join(lines) + "\n"
 
         if dry_run:
-            return [f"[dry-run] .github/copilot-instructions.md"]
+            return ["[dry-run] .github/copilot-instructions.md"]
 
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(content, encoding="utf-8")
-        return [f"✓ .github/copilot-instructions.md"]
+        return ["✓ .github/copilot-instructions.md"]
 
     def _build_mode(
         self,

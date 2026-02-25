@@ -9,17 +9,17 @@ Output:
   {output}/.cursorrules                            ← legacy fallback (concatenated)
 """
 
-from pathlib import Path
 import shutil
+from pathlib import Path
 
+from promptcli.builders._concat import build_concatenated
+from promptcli.builders.builder import Builder
 from promptcli.registry import (
     ALWAYS_ON,
     MODE_FILES,
-    prompt_path,
     dest_name,
+    prompt_path,
 )
-from promptcli.builders._concat import build_concatenated
-from promptcli.builders.builder import Builder
 
 
 class CursorBuilder(Builder):

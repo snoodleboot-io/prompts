@@ -4,8 +4,6 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import pytest
-
 from promptcli.builders.cline import ClineBuilder
 
 
@@ -27,9 +25,7 @@ class TestClineBuilder(unittest.TestCase):
     def test_cline_builder_build_returns_list(self):
         """ClineBuilder.build() should return a list of strings."""
         builder = ClineBuilder()
-        with patch(
-            "promptcli.builders.cline.build_concatenated"
-        ) as mock_concat:
+        with patch("promptcli.builders.cline.build_concatenated") as mock_concat:
             mock_concat.return_value = "# .clinerules\n"
             result = builder.build(Path("/tmp/output"), dry_run=True)
         assert isinstance(result, list)
@@ -38,9 +34,7 @@ class TestClineBuilder(unittest.TestCase):
     def test_cline_builder_dry_run_returns_dry_run_prefix(self):
         """ClineBuilder.build() with dry_run=True should return action with [dry-run]."""
         builder = ClineBuilder()
-        with patch(
-            "promptcli.builders.cline.build_concatenated"
-        ) as mock_concat:
+        with patch("promptcli.builders.cline.build_concatenated") as mock_concat:
             mock_concat.return_value = "# .clinerules\nline1\nline2\n"
             result = builder.build(Path("/tmp/output"), dry_run=True)
             assert any("[dry-run]" in item for item in result)
@@ -48,9 +42,7 @@ class TestClineBuilder(unittest.TestCase):
     def test_cline_builder_returns_action_string_with_line_count(self):
         """ClineBuilder.build() should return action string with line count."""
         builder = ClineBuilder()
-        with patch(
-            "promptcli.builders.cline.build_concatenated"
-        ) as mock_concat:
+        with patch("promptcli.builders.cline.build_concatenated") as mock_concat:
             mock_concat.return_value = "# .clinerules\nline1\nline2\n"
             result = builder.build(Path("/tmp/output"), dry_run=True)
             assert any("lines" in item for item in result)

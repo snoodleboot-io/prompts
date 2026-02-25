@@ -2,9 +2,7 @@
 
 import unittest
 from pathlib import Path
-from unittest.mock import MagicMock, patch
-
-import pytest
+from unittest.mock import patch
 
 from promptcli.builders.kilo import KiloBuilder
 
@@ -47,13 +45,9 @@ class TestKiloBuilder(unittest.TestCase):
         builder = KiloBuilder()
         with patch("promptcli.builders.kilo.ALWAYS_ON", ["core-system.md"]):
             with patch("promptcli.builders.kilo.MODE_FILES", {}):
-                with patch(
-                    "promptcli.builders.kilo.prompt_path"
-                ) as mock_prompt_path:
+                with patch("promptcli.builders.kilo.prompt_path") as mock_prompt_path:
                     with patch("shutil.copy2") as mock_copy:
-                        mock_prompt_path.return_value = Path(
-                            "/fake/prompts/core-system.md"
-                        )
+                        mock_prompt_path.return_value = Path("/fake/prompts/core-system.md")
                         result = builder.build(Path("/tmp/output"), dry_run=False)
                         mock_copy.assert_called()
 
@@ -62,15 +56,9 @@ class TestKiloBuilder(unittest.TestCase):
         builder = KiloBuilder()
         with patch("promptcli.builders.kilo.ALWAYS_ON", ["core-system.md"]):
             with patch("promptcli.builders.kilo.MODE_FILES", {}):
-                with patch(
-                    "promptcli.builders.kilo.prompt_path"
-                ) as mock_prompt_path:
-                    mock_prompt_path.return_value = Path(
-                        "/fake/prompts/core-system.md"
-                    )
+                with patch("promptcli.builders.kilo.prompt_path") as mock_prompt_path:
+                    mock_prompt_path.return_value = Path("/fake/prompts/core-system.md")
                     result = builder.build(Path("/tmp/output"), dry_run=True)
                     # Should contain either ✓ or [dry-run] prefix
                     assert len(result) > 0
-                    assert any(
-                        "core-system.md" in item for item in result
-                    )
+                    assert any("core-system.md" in item for item in result)

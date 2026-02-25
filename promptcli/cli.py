@@ -16,11 +16,10 @@ import sys
 from pathlib import Path
 
 import click
-
-from promptcli import fill_registry
-from promptcli.registry import MODES, MODE_FILES, ALWAYS_ON, PROMPTS_DIR, validate
 from sweet_tea.factory import Factory
 
+from promptcli import fill_registry
+from promptcli.registry import ALWAYS_ON, MODE_FILES, MODES, PROMPTS_DIR, validate
 
 # ── Initialize registry ───────────────────────────────────────────────────────
 # Register all builders with sweet_tea at module load time
@@ -30,7 +29,8 @@ fill_registry()
 # ── Shared options ─────────────────────────────────────────────────────────────
 
 output_option = click.option(
-    "--output", "-o",
+    "--output",
+    "-o",
     default=".",
     show_default=True,
     type=click.Path(file_okay=False, writable=True),
@@ -38,7 +38,8 @@ output_option = click.option(
 )
 
 dry_run_option = click.option(
-    "--dry-run", "-n",
+    "--dry-run",
+    "-n",
     is_flag=True,
     default=False,
     help="Preview what would be written without touching the filesystem.",
@@ -46,6 +47,7 @@ dry_run_option = click.option(
 
 
 # ── Root group ─────────────────────────────────────────────────────────────────
+
 
 @click.group()
 def cli():
@@ -58,6 +60,7 @@ def cli():
 
 
 # ── build group ───────────────────────────────────────────────────────────────
+
 
 @cli.group()
 def build():
@@ -120,15 +123,16 @@ def build_copilot(output, dry_run):
 def build_all(output, dry_run):
     """Build all targets: Kilo, Cline, Cursor, and Copilot."""
     for builder_key, label in [
-        ("kilobuilder",    "Kilo Code"),
-        ("clinebuilder",   "Cline"),
-        ("cursorbuilder",  "Cursor"),
+        ("kilobuilder", "Kilo Code"),
+        ("clinebuilder", "Cline"),
+        ("cursorbuilder", "Cursor"),
         ("copilotbuilder", "GitHub Copilot"),
     ]:
         _run_build(builder_key, label, output, dry_run)
 
 
 # ── list ───────────────────────────────────────────────────────────────────────
+
 
 @cli.command("list")
 def list_prompts():
@@ -154,6 +158,7 @@ def list_prompts():
 
 
 # ── validate ───────────────────────────────────────────────────────────────────
+
 
 @cli.command("validate")
 def validate_prompts():

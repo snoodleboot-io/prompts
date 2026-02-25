@@ -3,8 +3,6 @@
 import unittest
 from pathlib import Path
 
-import pytest
-
 
 class TestRegistry(unittest.TestCase):
     """Tests for the registry module."""
