@@ -55,6 +55,20 @@ When asked for edge case inputs, cover:
 7. Missing required fields
 8. Logical contradictions
 
+### Specialized Testing Approaches
+
+When appropriate for the project, consider:
+
+1. **Property-based testing** - for functions with mathematical properties (commutativity, associativity, idempotence). Generate random inputs and verify properties hold.
+
+2. **Snapshot testing** - for generated outputs that shouldn't change. Store expected output and compare new runs against stored snapshots.
+
+3. **Performance testing** - timing checks for known performance characteristics. Assert execution stays within expected bounds.
+
+4. **Fuzz testing** - random input generation for robustness. Especially useful for parsers, validators, and input handling.
+
+5. **Contract testing** - for API/service contracts between components. Verify interfaces between services match agreed specifications.
+
 ---
 
 ## Python-Specific Testing
@@ -82,3 +96,16 @@ pytest --cov={src} --cov-report=html --cov-report=term
 pytest -m unit
 pytest -m integration
 ```
+
+### Coverage Targets
+
+Aim for meaningful coverage rather than 100%:
+- **Core business logic**: 80%+ coverage
+- **Library code**: 70%+ coverage
+- **CLI entry points**: 100% coverage (every branch/path)
+- **Generated code**: Lower priority — focus on the generator, not outputs
+
+Run coverage reports and look for uncovered lines — add tests for:
+1. Error paths (exception handling)
+2. Edge cases not yet covered
+3. Any `if` branches not exercised
