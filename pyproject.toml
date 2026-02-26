@@ -49,15 +49,3 @@ ignore = [
 quote-style = "double"
 indent-style = "space"
 
-[tool.pre-commit]
-# Ruff can handle: formatting, import sorting, common errors
-# For these, add to hooks below:
-#   - ruff
-#   - ruff format
-#
-# Recommended additional tools (ruff cannot handle):
-#   - mypy           # type checking
-#   - pytest         # testing
-#   - detect-secrets # secret detection
-#   - prettier       # markdown/yaml/json formatting
-#   - editorconfig-checker  # .editorconfig compliance
