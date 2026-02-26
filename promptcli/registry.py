@@ -64,9 +64,21 @@ class Registry(BaseModel):
         "core-conventions.md",
         # Language-specific conventions (user includes relevant ones)
         "core-conventions-ts.md",
+        "core-conventions-js.md",
         "core-conventions-py.md",
+        "core-conventions-java.md",
+        "core-conventions-cs.md",
         "core-conventions-go.md",
+        "core-conventions-rust.md",
+        "core-conventions-r.md",
+        "core-conventions-elixir.md",
+        "core-conventions-elm.md",
+        "core-conventions-c.md",
+        "core-conventions-cpp.md",
+        "core-conventions-scala.md",
+        "core-conventions-kotlin.md",
         "core-conventions-sql.md",
+        "core-conventions-terraform.md",
     ]
 
     # ── Mode registry ───────────────────────────────────────────────────────
