@@ -1,7 +1,4 @@
-# Language-specific question classes using sweet_tea
-
-from sweet_tea import AbstractFactory
-from sweet_tea.entry import entry
+# Language-specific question classes
 
 from promptcli.questions.base import BaseQuestion
 
@@ -10,7 +7,6 @@ from promptcli.questions.base import BaseQuestion
 # ══════════════════════════════════════════════════════════════════════════════
 
 
-@entry(library="promptcli", label="language")
 class PythonQuestion(BaseQuestion):
     """Question handler for Python projects."""
 
@@ -49,7 +45,6 @@ class PythonQuestion(BaseQuestion):
         return "3.12"
 
 
-@entry(library="promptcli", label="language")
 class PythonPackageManagerQuestion(BaseQuestion):
     """Question for Python package manager."""
 
@@ -88,7 +83,6 @@ class PythonPackageManagerQuestion(BaseQuestion):
         return "poetry"
 
 
-@entry(library="promptcli", label="language")
 class PythonTestFrameworkQuestion(BaseQuestion):
     """Question for Python test framework."""
 
@@ -126,7 +120,6 @@ class PythonTestFrameworkQuestion(BaseQuestion):
         return "pytest"
 
 
-@entry(library="promptcli", label="language")
 class PythonLinterQuestion(BaseQuestion):
     """Question for Python linter."""
 
@@ -164,7 +157,6 @@ class PythonLinterQuestion(BaseQuestion):
         return "ruff"
 
 
-@entry(library="promptcli", label="language")
 class PythonFormatterQuestion(BaseQuestion):
     """Question for Python formatter."""
 
@@ -205,7 +197,6 @@ class PythonFormatterQuestion(BaseQuestion):
 # ══════════════════════════════════════════════════════════════════════════════
 
 
-@entry(library="promptcli", label="language")
 class TypeScriptQuestion(BaseQuestion):
     """Question handler for TypeScript projects."""
 
@@ -243,7 +234,6 @@ class TypeScriptQuestion(BaseQuestion):
         return "5.4"
 
 
-@entry(library="promptcli", label="language")
 class TypeScriptPackageManagerQuestion(BaseQuestion):
     """Question for TypeScript package manager."""
 
@@ -280,7 +270,6 @@ class TypeScriptPackageManagerQuestion(BaseQuestion):
         return "npm"
 
 
-@entry(library="promptcli", label="language")
 class TypeScriptTestFrameworkQuestion(BaseQuestion):
     """Question for TypeScript test framework."""
 
@@ -317,7 +306,6 @@ class TypeScriptTestFrameworkQuestion(BaseQuestion):
         return "vitest"
 
 
-@entry(library="promptcli", label="language")
 class TypeScriptFrameworkQuestion(BaseQuestion):
     """Question for TypeScript framework (React, Vue, etc)."""
 
@@ -359,12 +347,8 @@ class TypeScriptFrameworkQuestion(BaseQuestion):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# Question Factory using sweet_tea AbstractFactory
+# Language Registry
 # ══════════════════════════════════════════════════════════════════════════════
-
-
-# Create the question factory using sweet_tea's AbstractFactory
-QuestionFactory = AbstractFactory[BaseQuestion]
 
 # Registry of available language keys for dynamic lookup
 LANGUAGE_KEYS = [

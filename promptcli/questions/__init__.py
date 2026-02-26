@@ -12,7 +12,6 @@ from promptcli.questions.base import (
 )
 from promptcli.questions.language import (
     LANGUAGE_KEYS,
-    QuestionFactory,
     get_language_questions,
 )
 
@@ -26,7 +25,6 @@ __all__ = [
     "REPO_TYPE_MIXED",
     "REPO_TYPES",
     # Language
-    "QuestionFactory",
     "LANGUAGE_KEYS",
     "get_language_questions",
 ]
