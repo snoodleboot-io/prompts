@@ -43,7 +43,7 @@ class CopilotBuilder(Builder):
         return actions
 
     def _build_always_on(self, github: Path, dry_run: bool) -> list[str]:
-        dst = github / "copilot-instructions.md"
+        destination = github / "copilot-instructions.md"
         now = datetime.now().strftime("%Y-%m-%d %H:%M")
         lines: list[str] = [
             "# GitHub Copilot Instructions",
@@ -66,8 +66,8 @@ class CopilotBuilder(Builder):
         if dry_run:
             return ["[dry-run] .github/copilot-instructions.md"]
 
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(content, encoding="utf-8")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(content, encoding="utf-8")
         return ["✓ .github/copilot-instructions.md"]
 
     def _build_mode(
@@ -77,7 +77,7 @@ class CopilotBuilder(Builder):
         files: list[str],
         dry_run: bool,
     ) -> list[str]:
-        dst = github / "instructions" / f"{mode_key}.instructions.md"
+        destination = github / "instructions" / f"{mode_key}.instructions.md"
         label = registry.modes.get(mode_key, mode_key.title())
         apply = registry.copilot_apply.get(mode_key, "**")
 
@@ -102,32 +102,32 @@ class CopilotBuilder(Builder):
         if dry_run:
             return [f"[dry-run] .github/instructions/{mode_key}.instructions.md"]
 
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(content, encoding="utf-8")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(content, encoding="utf-8")
         return [f"✓ .github/instructions/{mode_key}.instructions.md"]
 
     def _build_copilotignore(self, output: Path, dry_run: bool) -> list[str]:
         """Generate .copilotignore file."""
-        dst = output / ".copilotignore"
+        destination = output / ".copilotignore"
         content = registry.generate_copilotignore()
 
         if dry_run:
             lines = content.count("\n")
             return [f"[dry-run] .copilotignore ({lines} lines)"]
 
-        dst.write_text(content, encoding="utf-8")
+        destination.write_text(content, encoding="utf-8")
         lines = content.count("\n")
         return [f"✓ .copilotignore ({lines} lines)"]
 
     def _build_gitignore(self, output: Path, dry_run: bool) -> list[str]:
         """Generate .gitignore file."""
-        dst = output / ".gitignore"
+        destination = output / ".gitignore"
         content = registry.generate_gitignore()
 
         if dry_run:
             lines = content.count("\n")
             return [f"[dry-run] .gitignore ({lines} lines)"]
 
-        dst.write_text(content, encoding="utf-8")
+        destination.write_text(content, encoding="utf-8")
         lines = content.count("\n")
         return [f"✓ .gitignore ({lines} lines)"]

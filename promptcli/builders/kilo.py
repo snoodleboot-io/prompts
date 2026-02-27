@@ -30,14 +30,14 @@ class KiloBuilder(Builder):
 
         # Always-on rules
         for filename in registry.always_on:
-            dst = base / "rules" / filename
-            actions.append(self._copy(registry.prompt_path(filename), dst, dry_run))
+            destination = base / "rules" / filename
+            actions.append(self._copy(registry.prompt_path(filename), destination, dry_run))
 
         # Per-mode rules
         for mode_key, files in registry.mode_files.items():
             for filename in files:
-                dst = base / f"rules-{mode_key}" / registry.dest_name(mode_key, filename)
-                actions.append(self._copy(registry.prompt_path(filename), dst, dry_run))
+                destination = base / f"rules-{mode_key}" / registry.dest_name(mode_key, filename)
+                actions.append(self._copy(registry.prompt_path(filename), destination, dry_run))
 
         # Generate .kilocodemodes manifest
         actions.append(self._write_manifest(output / ".kilocodemodes", dry_run))
@@ -47,7 +47,7 @@ class KiloBuilder(Builder):
 
         return actions
 
-    def _write_manifest(self, dst: Path, dry_run: bool) -> str:
+    def _write_manifest(self, destination: Path, dry_run: bool) -> str:
         """Write the .kilocodemodes manifest file."""
         # Build data structure for YAML
         modes = []
@@ -88,27 +88,27 @@ class KiloBuilder(Builder):
 
         if dry_run:
             return f"[dry-run] {label}"
-        dst.write_text(content, encoding="utf-8")
+        destination.write_text(content, encoding="utf-8")
         return f"✓ {label}"
 
-    def _copy(self, src: Path, dst: Path, dry_run: bool) -> str:
-        rel = str(dst).split(".kilo/", 1)[-1]
+    def _copy(self, src: Path, destination: Path, dry_run: bool) -> str:
+        rel = str(destination).split(".kilo/", 1)[-1]
         label = f".kilo/{rel}"
         if dry_run:
             return f"[dry-run] {src.name} → {label}"
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, destination)
         return f"✓ {src.name} → {label}"
 
     def _build_ignore(self, output: Path, dry_run: bool) -> list[str]:
         """Generate .kiloignore file."""
-        dst = output / ".kiloignore"
+        destination = output / ".kiloignore"
         content = registry.generate_kiloignore()
 
         if dry_run:
             lines = content.count("\n")
             return [f"[dry-run] .kiloignore ({lines} lines)"]
 
-        dst.write_text(content, encoding="utf-8")
+        destination.write_text(content, encoding="utf-8")
         lines = content.count("\n")
         return [f"✓ .kiloignore ({lines} lines)"]

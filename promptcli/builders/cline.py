@@ -25,15 +25,15 @@ class ClineBuilder(Builder):
         actions: list[str] = []
 
         # Build .clinerules
-        dst = output / ".clinerules"
+        destination = output / ".clinerules"
         content = build_concatenated("# .clinerules")
 
         if dry_run:
             lines = content.count("\n")
             actions.append(f"[dry-run] .clinerules ({lines} lines)")
         else:
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            dst.write_text(content, encoding="utf-8")
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_text(content, encoding="utf-8")
             lines = content.count("\n")
             actions.append(f"✓ .clinerules ({lines} lines)")
 
@@ -44,13 +44,13 @@ class ClineBuilder(Builder):
 
     def _build_ignore(self, output: Path, dry_run: bool) -> list[str]:
         """Generate .clineignore file."""
-        dst = output / ".clineignore"
+        destination = output / ".clineignore"
         content = registry.generate_clineignore()
 
         if dry_run:
             lines = content.count("\n")
             return [f"[dry-run] .clineignore ({lines} lines)"]
 
-        dst.write_text(content, encoding="utf-8")
+        destination.write_text(content, encoding="utf-8")
         lines = content.count("\n")
         return [f"✓ .clineignore ({lines} lines)"]

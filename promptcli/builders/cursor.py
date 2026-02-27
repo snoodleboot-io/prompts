@@ -32,15 +32,15 @@ class CursorBuilder(Builder):
         # Always-on rules as .mdc
         for filename in registry.always_on:
             mdc_name = filename.replace(".md", ".mdc")
-            dst = rules_base / mdc_name
-            actions.append(self._copy(registry.prompt_path(filename), dst, dry_run))
+            destination = rules_base / mdc_name
+            actions.append(self._copy(registry.prompt_path(filename), destination, dry_run))
 
         # Per-mode rules as .mdc in subdirectories
         for mode_key, files in registry.mode_files.items():
             for filename in files:
                 dname = registry.dest_name(mode_key, filename, ext=".mdc")
-                dst = rules_base / mode_key / dname
-                actions.append(self._copy(registry.prompt_path(filename), dst, dry_run))
+                destination = rules_base / mode_key / dname
+                actions.append(self._copy(registry.prompt_path(filename), destination, dry_run))
 
         # Legacy .cursorrules fallback
         legacy_dst = output / ".cursorrules"
@@ -59,22 +59,22 @@ class CursorBuilder(Builder):
 
     def _build_ignore(self, output: Path, dry_run: bool) -> list[str]:
         """Generate .cursorignore file."""
-        dst = output / ".cursorignore"
+        destination = output / ".cursorignore"
         content = registry.generate_cursorignore()
 
         if dry_run:
             lines = content.count("\n")
             return [f"[dry-run] .cursorignore ({lines} lines)"]
 
-        dst.write_text(content, encoding="utf-8")
+        destination.write_text(content, encoding="utf-8")
         lines = content.count("\n")
         return [f"✓ .cursorignore ({lines} lines)"]
 
-    def _copy(self, src: Path, dst: Path, dry_run: bool) -> str:
-        rel = str(dst).split(".cursor/", 1)[-1]
+    def _copy(self, src: Path, destination: Path, dry_run: bool) -> str:
+        rel = str(destination).split(".cursor/", 1)[-1]
         label = f".cursor/{rel}"
         if dry_run:
             return f"[dry-run] {src.name} → {label}"
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, destination)
         return f"✓ {src.name} → {label}"
