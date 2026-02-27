@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Clojure 1.12
 Runtime:              {{RUNTIME}}            e.g., JVM
-Package Manager:      {{PKG_MANAGER}}        e.g., deps.edn, Leiningen
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., deps.edn, Leiningen
 Linter:              {{LINTER}}             e.g., eastwood, clj-kondo
 Formatter:           {{FORMATTER}}          e.g., cljfmt
 
@@ -22,6 +22,6 @@ Formatter:           {{FORMATTER}}          e.g., cljfmt
 - Use meaningful names
 
 ### Testing
-Framework:       {{TEST_FRAMEWORK}}        e.g., clojure.test
+Framework:       {{TESTING_FRAMEWORK}}        e.g., clojure.test
 Property tool:   {{PROPERTY_TOOL}}        e.g., test.check
-Coverage tool:  {{COV_TOOL}}              e.g., cloverage
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., cloverage

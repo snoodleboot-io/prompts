@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., PHP 8.3
 Runtime:              {{RUNTIME}}            e.g., PHP-FPM, Laravel Octane
-Package Manager:      {{PKG_MANAGER}}        e.g., Composer
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., Composer
 Linter:               {{LINTER}}             e.g., PHP CS Fixer, Pint
 Formatter:           {{FORMATTER}}          e.g., Pint, PHP CS Fixer
 
@@ -48,9 +48,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use Pest or Laravel Dusk for browser testing
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., PHPUnit, Pest
-Mocking:        {{MOCK_LIB}}              e.g., Mockery, PHP-Mock
-Coverage tool:  {{COV_TOOL}}              e.g., Xdebug, PCOV
+Framework:       {{TESTING_FRAMEWORK}}        e.g., PHPUnit, Pest
+Mocking:        {{MOCKING_LIBRARY}}              e.g., Mockery, PHP-Mock
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Xdebug, PCOV
 
 #### Scaffolding
 

@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Dart 3.2
 Runtime:              {{RUNTIME}}            e.g., Flutter, Dart VM
-Package Manager:      {{PKG_MANAGER}}        e.g., pub
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., pub
 Linter:               {{LINTER}}             e.g., dart analyze
 Formatter:           {{FORMATTER}}          e.g., dart format
 
@@ -33,6 +33,6 @@ Function:       {{FUNCTION_COVERAGE_%}}       e.g., 90%
 - Use mockito for mocking
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., flutter_test, test
-Mocking:        {{MOCK_LIB}}              e.g., mockito
-Coverage tool:  {{COV_TOOL}}              e.g., coverage
+Framework:       {{TESTING_FRAMEWORK}}        e.g., flutter_test, test
+Mocking:        {{MOCKING_LIBRARY}}              e.g., mockito
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., coverage

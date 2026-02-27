@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., JavaScript ES2024
 Runtime:              {{RUNTIME}}            e.g., Node.js 20, Deno, Bun
-Package Manager:      {{PKG_MANAGER}}        e.g., npm, pnpm, yarn
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., npm, pnpm, yarn
 Linter:               {{LINTER}}             e.g., ESLint
 Formatter:           {{FORMATTER}}          e.g., Prettier
 
@@ -52,9 +52,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use `stryker-mutator` for JavaScript
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., Jest, Vitest, Mocha
-Mocking library: {{MOCK_LIB}}              e.g., jest-mock, sinon
-Coverage tool:  {{COV_TOOL}}              e.g., Jest coverage, c8
+Framework:       {{TESTING_FRAMEWORK}}        e.g., Jest, Vitest, Mocha
+Mocking library: {{MOCKING_LIBRARY}}              e.g., jest-mock, sinon
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Jest coverage, c8
 E2E tool:       {{E2E_TOOL}}             e.g., Playwright, Cypress
 
 #### Scaffolding

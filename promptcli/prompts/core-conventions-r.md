@@ -1,7 +1,7 @@
 # R Conventions
 
 Language:             {{LANGUAGE}}           e.g., R 4.3+
-Package Manager:      {{PKG_MANAGER}}        e.g., renv, pacman
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., renv, pacman
 Linter:              {{LINTER}}             e.g., lintr
 Formatter:           {{FORMATTER}}          e.g., styler, formatR
 
@@ -43,9 +43,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Test data transformations
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., testthat, tinytest
-Mocking:        {{MOCK_LIB}}              e.g., mockery, mockr
-Coverage tool:  {{COV_TOOL}}              e.g., covr
+Framework:       {{TESTING_FRAMEWORK}}        e.g., testthat, tinytest
+Mocking:        {{MOCKING_LIBRARY}}              e.g., mockery, mockr
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., covr
 
 #### Scaffolding
 

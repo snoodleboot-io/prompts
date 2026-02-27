@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Ruby 3.3
 Runtime:              {{RUNTIME}}            e.g., MRI, JRuby
-Package Manager:      {{PKG_MANAGER}}        e.g., Bundler
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., Bundler
 Linter:               {{LINTER}}             e.g., RuboCop
 Formatter:           {{FORMATTER}}          e.g., Rufo, RuboCop
 
@@ -44,9 +44,9 @@ Method:         {{METHOD_COVERAGE_%}}         e.g., 90%
 - Use Capybara for browser testing
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., RSpec, Minitest
-Mocking:        {{MOCK_LIB}}              e.g., RSpec mocks, RR
-Coverage tool:  {{COV_TOOL}}              e.g., SimpleCov
+Framework:       {{TESTING_FRAMEWORK}}        e.g., RSpec, Minitest
+Mocking:        {{MOCKING_LIBRARY}}              e.g., RSpec mocks, RR
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., SimpleCov
 
 #### Scaffolding
 

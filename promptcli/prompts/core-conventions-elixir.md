@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Elixir 1.15+
 Runtime:              {{RUNTIME}}            e.g., OTP 26
-Package Manager:      {{PKG_MANAGER}}        e.g., mix
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., mix
 Linter:               {{LINTER}}             e.g., Credo, Sobelow
 Formatter:           {{FORMATTER}}          e.g., mix format
 
@@ -51,10 +51,10 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use PropCheck for property-based testing
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., ExUnit
-Mocking:        {{MOCK_LIB}}              e.g., Mox
+Framework:       {{TESTING_FRAMEWORK}}        e.g., ExUnit
+Mocking:        {{MOCKING_LIBRARY}}              e.g., Mox
 Property tool:   {{PROPERTY_TOOL}}        e.g., PropCheck, StreamData
-Coverage tool:  {{COV_TOOL}}              e.g., ExCoveralls
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., ExCoveralls
 
 #### Scaffolding
 

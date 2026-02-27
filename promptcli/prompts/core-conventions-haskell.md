@@ -1,7 +1,7 @@
 # Haskell Conventions
 
 Language:             {{LANGUAGE}}           e.g., Haskell 9.8
-Package Manager:      {{PKG_MANAGER}}        e.g., Cabal, Stack
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., Cabal, Stack
 Linter:              {{LINTER}}             e.g., HLint, Stan
 Formatter:           {{FORMATTER}}          e.g., Brittany, Ormolu
 
@@ -22,6 +22,6 @@ Formatter:           {{FORMATTER}}          e.g., Brittany, Ormolu
 - Use hlint for linting
 
 ### Testing
-Framework:       {{TEST_FRAMEWORK}}        e.g., HSpec, QuickCheck
+Framework:       {{TESTING_FRAMEWORK}}        e.g., HSpec, QuickCheck
 Property tool:   {{PROPERTY_TOOL}}        e.g., QuickCheck, Hedgehog
-Coverage tool:  {{COV_TOOL}}              e.g., HPC
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., HPC

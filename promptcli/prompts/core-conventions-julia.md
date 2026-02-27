@@ -1,7 +1,7 @@
 # Julia Conventions
 
 Language:             {{LANGUAGE}}           e.g., Julia 1.10
-Package Manager:      {{PKG_MANAGER}}        e.g., Pkg
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., Pkg
 Linter:              {{LINTER}}             e.g., Jet.jl, Lint.jl
 Formatter:           {{FORMATTER}}          e.g., JuliaFormatter
 
@@ -21,5 +21,5 @@ Formatter:           {{FORMATTER}}          e.g., JuliaFormatter
 - Use descriptive function names
 
 ### Testing
-Framework:       {{TEST_FRAMEWORK}}        e.g., Test.jl
-Coverage tool:  {{COV_TOOL}}              e.g., Coverage.jl
+Framework:       {{TESTING_FRAMEWORK}}        e.g., Test.jl
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Coverage.jl

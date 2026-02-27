@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., C17, C23
 Compiler:            {{RUNTIME}}            e.g., GCC, Clang, MSVC
-Package Manager:      {{PKG_MANAGER}}        e.g., CMake, make
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., CMake, make
 Linter:               {{LINTER}}             e.g., cppcheck, clang-tidy
 Formatter:           {{FORMATTER}}          e.g., clang-format
 
@@ -51,8 +51,8 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Run in CI pipeline
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., Unity, Check, CMocka
-Coverage tool:  {{COV_TOOL}}              e.g., lcov, gcov
+Framework:       {{TESTING_FRAMEWORK}}        e.g., Unity, Check, CMocka
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., lcov, gcov
 Static analysis: {{LINT_TOOL}}           e.g., cppcheck, clang-tidy
 
 #### Scaffolding

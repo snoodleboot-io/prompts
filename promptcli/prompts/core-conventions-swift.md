@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Swift 5.9
 Runtime:              {{RUNTIME}}            e.g., macOS, iOS, Linux
-Package Manager:      {{SPM}}               e.g., Swift Package Manager, CocoaPods
+Package Manager:      {{SWIFT_PACKAGE_MANAGER}}               e.g., Swift Package Manager, CocoaPods
 Linter:               {{LINTER}}             e.g., SwiftLint
 Formatter:           {{FORMATTER}}          e.g., SwiftFormat
 
@@ -46,9 +46,9 @@ Statement:      {{STATEMENT_COVERAGE_%}}      e.g., 85%
 - Use SwiftSnapshotTesting for visual testing
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., XCTest
-Mocking:        {{MOCK_LIB}}              e.g., Mockingbird
-Coverage tool:  {{COV_TOOL}}              e.g., Xcode coverage
+Framework:       {{TESTING_FRAMEWORK}}        e.g., XCTest
+Mocking:        {{MOCKING_LIBRARY}}              e.g., Mockingbird
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Xcode coverage
 
 #### Scaffolding
 

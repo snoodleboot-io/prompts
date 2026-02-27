@@ -1,7 +1,7 @@
 # SQL Conventions
 
 Database:            {{DATABASE}}           e.g., PostgreSQL, MySQL, SQLite
-ORM/Query:           {{ORM}}                e.g., Prisma, SQLAlchemy, GORM, Drizzle
+ORM/Query:           {{ORM_QUERY_BUILDER}}                e.g., Prisma, SQLAlchemy, GORM, Drizzle
 
 ### Testing
 
@@ -41,9 +41,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Test under load with realistic data volumes
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., pytest, Go test, Jest
-Mocking library: {{MOCK_LIB}}              e.g., factory_boy, testfixtures
-Coverage tool:  {{COV_TOOL}}              e.g., coverage.py, istanbul
+Framework:       {{TESTING_FRAMEWORK}}        e.g., pytest, Go test, Jest
+Mocking library: {{MOCKING_LIBRARY}}              e.g., factory_boy, testfixtures
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., coverage.py, istanbul
 Factory tool:   {{FACTORY_TOOL}}          e.g., factory_boy, testdata
 
 #### Scaffolding

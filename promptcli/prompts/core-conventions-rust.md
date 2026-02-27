@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Rust 1.75
 Runtime:              {{RUNTIME}}            e.g., Native, WASM
-Package Manager:      {{PKG_MANAGER}}        e.g., Cargo
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., Cargo
 Linter:               {{LINTER}}             e.g., Clippy
 Formatter:           {{FORMATTER}}          e.g., rustfmt
 
@@ -57,9 +57,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Test parsing and input validation
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., built-in, rstest
+Framework:       {{TESTING_FRAMEWORK}}        e.g., built-in, rstest
 Property tool:   {{PROPERTY_TOOL}}        e.g., proptest, quickcheck
-Coverage tool:  {{COV_TOOL}}              e.g., tarpaulin, grcov
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., tarpaulin, grcov
 Fuzz tool:      {{FUZZ_TOOL}}            e.g., cargo-fuzz
 
 #### Scaffolding

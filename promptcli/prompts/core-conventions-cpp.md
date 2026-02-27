@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., C++20, C++23
 Compiler:            {{RUNTIME}}            e.g., GCC, Clang, MSVC
-Package Manager:      {{PKG_MANAGER}}        e.g., CMake, vcpkg, Conan
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., CMake, vcpkg, Conan
 Linter:               {{LINTER}}             e.g., clang-tidy, cppcheck
 Formatter:           {{FORMATTER}}          e.g., clang-format
 
@@ -50,9 +50,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Test parsers and input validation
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., Google Test, Catch2, doctest
-Mocking:        {{MOCK_LIB}}              e.g., Google Mock, Trompeloeil
-Coverage tool:  {{COV_TOOL}}              e.g., lcov, gcov, llvm-cov
+Framework:       {{TESTING_FRAMEWORK}}        e.g., Google Test, Catch2, doctest
+Mocking:        {{MOCKING_LIBRARY}}              e.g., Google Mock, Trompeloeil
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., lcov, gcov, llvm-cov
 
 #### Scaffolding
 

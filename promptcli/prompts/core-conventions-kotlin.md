@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Kotlin 1.9
 Runtime:              {{RUNTIME}}            e.g., JVM 21, Kotlin/JS, Kotlin/Native
-Package Manager:      {{PKG_MANAGER}}        e.g., Gradle, Maven
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., Gradle, Maven
 Linter:               {{LINTER}}             e.g., ktlint, detekt
 Formatter:           {{FORMATTER}}          e.g., ktlint
 
@@ -48,10 +48,10 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use Kotest property-based testing
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., JUnit 5, Kotest
-Mocking:        {{MOCK_LIB}}              e.g., MockK
+Framework:       {{TESTING_FRAMEWORK}}        e.g., JUnit 5, Kotest
+Mocking:        {{MOCKING_LIBRARY}}              e.g., MockK
 Property tool:   {{PROPERTY_TOOL}}        e.g., Kotest
-Coverage tool:  {{COV_TOOL}}              e.g., JaCoCo
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., JaCoCo
 
 #### Scaffolding
 

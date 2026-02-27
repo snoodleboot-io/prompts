@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., C# 12, .NET 8
 Runtime:              {{RUNTIME}}            e.g., .NET 8, Mono
-Package Manager:      {{PKG_MANAGER}}        e.g., NuGet, dotnet
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., NuGet, dotnet
 Linter:               {{LINTER}}             e.g., StyleCop, SonarLint
 Formatter:           {{FORMATTER}}          e.g., dotnet format, ReSharper
 
@@ -54,9 +54,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use BenchmarkDotNet for micro-benchmarks
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., xUnit, NUnit, MSTest
-Mocking library: {{MOCK_LIB}}              e.g., Moq, NSubstitute
-Coverage tool:  {{COV_TOOL}}              e.g., Coverlet, dotnet-coverage
+Framework:       {{TESTING_FRAMEWORK}}        e.g., xUnit, NUnit, MSTest
+Mocking library: {{MOCKING_LIBRARY}}              e.g., Moq, NSubstitute
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Coverlet, dotnet-coverage
 
 #### Scaffolding
 

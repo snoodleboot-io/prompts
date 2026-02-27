@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Java 21
 Runtime:              {{RUNTIME}}            e.g., JDK 21, OpenJDK
-Package Manager:      {{PKG_MANAGER}}        e.g., Maven, Gradle
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., Maven, Gradle
 Linter:               {{LINTER}}             e.g., Checkstyle, SpotBugs
 Formatter:           {{FORMATTER}}          e.g., Google Java Format, Spotless
 
@@ -56,9 +56,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use Pitest for mutation testing
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., JUnit 5, TestNG
-Mocking library: {{MOCK_LIB}}              e.g., Mockito, EasyMock
-Coverage tool:  {{COV_TOOL}}              e.g., JaCoCo, Cobertura
+Framework:       {{TESTING_FRAMEWORK}}        e.g., JUnit 5, TestNG
+Mocking library: {{MOCKING_LIBRARY}}              e.g., Mockito, EasyMock
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., JaCoCo, Cobertura
 Mutation tool:  {{MUTATION_TOOL}}          e.g., Pitest
 
 #### Scaffolding

@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Elm 0.19
 Runtime:              {{RUNTIME}}            e.g., Browser, Node.js
-Package Manager:      {{PKG_MANAGER}}        e.g., elm
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., elm
 Linter:               {{LINTER}}             e.g., elm-format, elm-review
 Formatter:           {{FORMATTER}}          e.g., elm-format
 
@@ -46,9 +46,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use fuzz testing with elm-test
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., elm-test
+Framework:       {{TESTING_FRAMEWORK}}        e.g., elm-test
 Fuzz tool:      {{FUZZ_TOOL}}            e.g., elm-test (built-in)
-Coverage tool:  {{COV_TOOL}}              e.g., elm-coverage
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., elm-coverage
 
 #### Scaffolding
 

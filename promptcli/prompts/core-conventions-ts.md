@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., TypeScript 5.x
 Runtime:              {{RUNTIME}}            e.g., Node 20, Deno, Bun
-Package Manager:      {{PKG_MANAGER}}        e.g., npm, pnpm, yarn
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., npm, pnpm, yarn
 Linter:               {{LINTER}}             e.g., ESLint
 Formatter:           {{FORMATTER}}          e.g., Prettier
 
@@ -62,9 +62,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Test component rendering and user interactions
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., Vitest, Jest
-Mocking library: {{MOCK_LIB}}              e.g., vitest/mock, jest.mock
-Coverage tool:  {{COV_TOOL}}              e.g., Vitest coverage, Jest coverage
+Framework:       {{TESTING_FRAMEWORK}}        e.g., Vitest, Jest
+Mocking library: {{MOCKING_LIBRARY}}              e.g., vitest/mock, jest.mock
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Vitest coverage, Jest coverage
 E2E tool:       {{E2E_TOOL}}             e.g., Playwright, Cypress
 Mutation tool:  {{MUTATION_TOOL}}          e.g., stryker-mutator
 

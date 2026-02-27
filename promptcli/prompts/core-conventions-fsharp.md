@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., F# 7.0
 Runtime:              {{RUNTIME}}            e.g., .NET 8
-Package Manager:      {{PKG_MANAGER}}        e.g., NuGet, dotnet
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., NuGet, dotnet
 Linter:              {{LINTER}}             e.g., Fantomas
 Formatter:           {{FORMATTER}}          e.g., Fantomas
 
@@ -22,5 +22,5 @@ Formatter:           {{FORMATTER}}          e.g., Fantomas
 - Use pipe operator
 
 ### Testing
-Framework:       {{TEST_FRAMEWORK}}        e.g., NUnit, xUnit, Expecto
-Coverage tool:  {{COV_TOOL}}              e.g., Coverlet
+Framework:       {{TESTING_FRAMEWORK}}        e.g., NUnit, xUnit, Expecto
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Coverlet

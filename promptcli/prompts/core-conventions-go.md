@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Go 1.22
 Runtime:              {{RUNTIME}}            e.g., Go runtime
-Package Manager:      {{PKG_MANAGER}}        e.g., go mod
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., go mod
 Linter:               {{LINTER}}             e.g., golangci-lint
 Formatter:           {{FORMATTER}}          e.g., gofmt, goimports
 
@@ -61,9 +61,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Run after unit tests pass
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., Go test
-Mocking library: {{MOCK_LIB}}              e.g., testify, gomock
-Coverage tool:  {{COV_TOOL}}              e.g., go test -cover, gocov
+Framework:       {{TESTING_FRAMEWORK}}        e.g., Go test
+Mocking library: {{MOCKING_LIBRARY}}              e.g., testify, gomock
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., go test -cover, gocov
 Fuzz tool:      {{FUZZ_TOOL}}             e.g., go-fuzz, testing/fuzz
 
 #### Scaffolding

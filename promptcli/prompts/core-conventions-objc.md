@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Objective-C
 Runtime:              {{RUNTIME}}            e.g., macOS, iOS
-Package Manager:      {{PKG_MANAGER}}        e.g., CocoaPods, Carthage
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., CocoaPods, Carthage
 Linter:              {{LINTER}}             e.g., clang-tidy
 Formatter:           {{FORMATTER}}          e.g., clang-format
 
@@ -35,6 +35,6 @@ Function:       {{FUNCTION_COVERAGE_%}}       e.g., 90%
 - Use OCMock for mocking
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., XCTest
-Mocking:        {{MOCK_LIB}}              e.g., OCMock
-Coverage tool:  {{COV_TOOL}}              e.g., Xcode coverage
+Framework:       {{TESTING_FRAMEWORK}}        e.g., XCTest
+Mocking:        {{MOCKING_LIBRARY}}              e.g., OCMock
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., Xcode coverage

@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Bash 5.2, Zsh
 Shell:              {{SHELL}}             e.g., Bash, Zsh
-Package Manager:      {{PKG_MANAGER}}        e.g., apt, yum, brew
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., apt, yum, brew
 
 ## Shell-Specific Rules
 
@@ -26,6 +26,6 @@ Line:           {{LINE_COVERAGE_%}}          e.g., 80%
 - Test scripts as black box
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., bats-core, shunit2
+Framework:       {{TESTING_FRAMEWORK}}        e.g., bats-core, shunit2
 Linting:       {{LINT_TOOL}}           e.g., shellcheck
-Coverage tool:  {{COV_TOOL}}              e.g., bashcov
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., bashcov

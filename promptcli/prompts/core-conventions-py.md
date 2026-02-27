@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Python 3.11+
 Runtime:              {{RUNTIME}}            e.g., CPython 3.11, PyPy
-Package Manager:      {{PKG_MANAGER}}        e.g., poetry, pip, uv
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., poetry, pip, uv
 Linter:               {{LINTER}}             e.g., Ruff, flake8
 Formatter:           {{FORMATTER}}          e.g., Ruff, Black
 
@@ -65,9 +65,9 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Test edge cases automatically generated
 
 #### Framework & Tools
-Framework:         {{TEST_FRAMEWORK}}       e.g., pytest
-Mocking library:   {{MOCK_LIB}}             e.g., unittest.mock, pytest-mock
-Coverage tool:    {{COV_TOOL}}             e.g., pytest-cov, coverage.py
+Framework:         {{TESTING_FRAMEWORK}}       e.g., pytest
+Mocking library:   {{MOCKING_LIBRARY}}             e.g., unittest.mock, pytest-mock
+Coverage tool:    {{COVERAGE_TOOL}}             e.g., pytest-cov, coverage.py
 Mutation tool:    {{MUTATION_TOOL}}        e.g., mutmut, pytest-mutmut
 
 #### Scaffolding

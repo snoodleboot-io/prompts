@@ -2,7 +2,7 @@
 
 Language:             {{LANGUAGE}}           e.g., Scala 3.4
 Runtime:              {{RUNTIME}}            e.g., JVM 21
-Package Manager:      {{PKG_MANAGER}}        e.g., sbt, mill
+Package Manager:      {{PACKAGE_MANAGER}}        e.g., sbt, mill
 Linter:              {{LINTER}}             e.g., Scalafmt, Scalafix
 Formatter:           {{FORMATTER}}          e.g., Scalafmt
 
@@ -48,10 +48,10 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Use ScalaCheck for property-based testing
 
 #### Framework & Tools
-Framework:       {{TEST_FRAMEWORK}}        e.g., ScalaTest, MUnit, specs2
-Mocking:        {{MOCK_LIB}}              e.g., ScalaMock, Mockito
+Framework:       {{TESTING_FRAMEWORK}}        e.g., ScalaTest, MUnit, specs2
+Mocking:        {{MOCKING_LIBRARY}}              e.g., ScalaMock, Mockito
 Property tool:   {{PROPERTY_TOOL}}        e.g., ScalaCheck
-Coverage tool:  {{COV_TOOL}}              e.g., scoverage
+Coverage tool:  {{COVERAGE_TOOL}}              e.g., scoverage
 
 #### Scaffolding
 
