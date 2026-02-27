@@ -48,6 +48,7 @@ def get_language_questions(language: str):
         PythonPackageManagerQuestion,
         PythonRuntimeQuestion,
         PythonTestFrameworkQuestion,
+        PythonTestRunnerQuestion,
     )
     from promptcli.questions.typescript import (
         TypeScriptFrameworkQuestion,
@@ -62,6 +63,7 @@ def get_language_questions(language: str):
                 PythonRuntimeQuestion(),
                 PythonPackageManagerQuestion(),
                 PythonTestFrameworkQuestion(),
+                PythonTestRunnerQuestion(),
                 PythonLinterQuestion(),
                 PythonFormatterQuestion(),
             ]

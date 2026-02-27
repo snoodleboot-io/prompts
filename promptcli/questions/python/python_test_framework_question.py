@@ -4,7 +4,7 @@ from promptcli.questions.base import BaseQuestion
 
 
 class PythonTestFrameworkQuestion(BaseQuestion):
-    """Question for Python test framework."""
+    """Question for Python test framework (how tests are written)."""
 
     @property
     def key(self) -> str:
@@ -16,23 +16,21 @@ class PythonTestFrameworkQuestion(BaseQuestion):
 
     @property
     def explanation(self) -> str:
-        return """Testing framework affects:
-- Test discovery and organization
-- Assertion style and reporting
-- Fixture and mocking capabilities
-- Integration with coverage tools"""
+        return """Test framework affects how tests are written:
+- hybrid: unittest.TestCase with limited pytest fixtures and mocking
+- pytest: Industry standard, powerful fixtures, great reporting
+- unittest: Built-in, simple, no dependencies"""
 
     @property
     def options(self) -> list[str]:
-        return ["pytest", "unittest", "doctest", "nose2"]
+        return ["hybrid", "pytest", "unittest"]
 
     @property
     def option_explanations(self) -> dict[str, str]:
         return {
+            "hybrid": "unittest.TestCase with limited pytest fixtures and mocking",
             "pytest": "Industry standard - powerful fixtures, great reporting, widely used",
             "unittest": "Built-in - simple, no dependencies, good for beginners",
-            "doctest": "Documentation testing - tests in docstrings, good for math/code clarity",
-            "nose2": "nose successor - plugin ecosystem, pytest-like",
         }
 
     @property
