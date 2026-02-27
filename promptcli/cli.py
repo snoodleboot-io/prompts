@@ -186,6 +186,7 @@ def init_prompts(interactive: bool):
         RepositoryTypeQuestion,
         get_language_questions,
     )
+    from promptcli.ui import format_options_columns
 
     # Try to import interactive UI
     use_interactive = interactive
@@ -247,8 +248,8 @@ def init_prompts(interactive: bool):
             )
         else:
             click.echo("\n\nAvailable languages:")
-            for i, lang in enumerate(sorted(LANGUAGE_KEYS)):
-                click.echo(f"  {i + 1}. {lang}")
+            sorted_langs = sorted(LANGUAGE_KEYS)
+            click.echo(format_options_columns(sorted_langs))
 
             language = click.prompt(
                 "\nPrimary language (number or name)",
