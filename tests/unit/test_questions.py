@@ -12,6 +12,13 @@ from promptcli.questions.base import (
 from promptcli.questions.python.python_package_manager_question import PythonPackageManagerQuestion
 from promptcli.questions.python.python_runtime_question import PythonRuntimeQuestion
 from promptcli.questions.python.python_test_framework_question import PythonTestFrameworkQuestion
+from promptcli.questions.python.python_linter_question import PythonLinterQuestion
+from promptcli.questions.python.python_formatter_question import PythonFormatterQuestion
+from promptcli.questions.python.python_test_runner_question import PythonTestRunnerQuestion
+from promptcli.questions.handlers import (
+    LanguageQuestionHandler,
+    HandleSingleLanguageQuestions,
+)
 
 from promptcli.questions.typescript import (
     TypeScriptVersionQuestion,
@@ -263,3 +270,167 @@ class TestGetLanguageQuestions:
         assert "javascript" in LANGUAGE_KEYS
         assert "go" in LANGUAGE_KEYS
         assert "rust" in LANGUAGE_KEYS
+
+
+class TestPythonLinterQuestion:
+    """Tests for PythonLinterQuestion."""
+
+    def test_question_has_required_properties(self):
+        """Question should have all required properties."""
+        q = PythonLinterQuestion()
+
+        assert q.key == "python_linter"
+        assert q.question_text
+        assert q.explanation
+        assert q.options
+
+    def test_options_include_common_linters(self):
+        """Options should include common Python linters."""
+        q = PythonLinterQuestion()
+
+        assert "ruff" in q.options
+        assert "flake8" in q.options
+        assert "pylint" in q.options
+        assert "mypy" in q.options
+
+    def test_default_is_ruff(self):
+        """Default should be ruff."""
+        q = PythonLinterQuestion()
+
+        assert q.default == "ruff"
+
+    def test_allow_multiple_is_true(self):
+        """Should allow multiple selections."""
+        q = PythonLinterQuestion()
+
+        assert q.allow_multiple is True
+
+    def test_option_explanations_for_all_options(self):
+        """Each option should have an explanation."""
+        q = PythonLinterQuestion()
+
+        for opt in q.options:
+            assert opt in q.option_explanations
+
+
+class TestPythonFormatterQuestion:
+    """Tests for PythonFormatterQuestion."""
+
+    def test_question_has_required_properties(self):
+        """Question should have all required properties."""
+        q = PythonFormatterQuestion()
+
+        assert q.key == "python_formatter"
+        assert q.question_text
+        assert q.explanation
+        assert q.options
+
+    def test_options_include_common_formatters(self):
+        """Options should include common Python formatters."""
+        q = PythonFormatterQuestion()
+
+        assert "ruff" in q.options
+        assert "black" in q.options
+        assert "yapf" in q.options
+
+    def test_default_is_ruff(self):
+        """Default should be ruff."""
+        q = PythonFormatterQuestion()
+
+        assert q.default == "ruff"
+
+    def test_allow_multiple_is_true(self):
+        """Should allow multiple selections."""
+        q = PythonFormatterQuestion()
+
+        assert q.allow_multiple is True
+
+    def test_option_explanations_for_all_options(self):
+        """Each option should have an explanation."""
+        q = PythonFormatterQuestion()
+
+        for opt in q.options:
+            assert opt in q.option_explanations
+
+
+class TestPythonTestRunnerQuestion:
+    """Tests for PythonTestRunnerQuestion."""
+
+    def test_question_has_required_properties(self):
+        """Question should have all required properties."""
+        q = PythonTestRunnerQuestion()
+
+        assert q.key == "python_test_runner"
+        assert q.question_text
+        assert q.explanation
+        assert q.options
+
+    def test_options_include_common_runners(self):
+        """Options should include common test runners."""
+        q = PythonTestRunnerQuestion()
+
+        assert "pytest" in q.options
+        assert "nose2" in q.options
+        assert "unittest" in q.options
+
+    def test_default_is_pytest(self):
+        """Default should be pytest."""
+        q = PythonTestRunnerQuestion()
+
+        assert q.default == "pytest"
+
+    def test_option_explanations_for_all_options(self):
+        """Each option should have an explanation."""
+        q = PythonTestRunnerQuestion()
+
+        for opt in q.options:
+            assert opt in q.option_explanations
+
+
+class TestLanguageQuestionHandler:
+    """Tests for LanguageQuestionHandler base class."""
+
+    def test_handle_method_raises_not_implemented(self):
+        """Base handle() method should raise NotImplementedError."""
+        handler = LanguageQuestionHandler()
+
+        with pytest.raises(NotImplementedError):
+            handler.handle("single-language")
+
+
+class TestHandleSingleLanguageQuestions:
+    """Tests for HandleSingleLanguageQuestions handler."""
+
+    def test_handler_initializes_with_selector(self):
+        """Handler should initialize with a selector function."""
+        mock_selector = lambda **kwargs: "python"
+        handler = HandleSingleLanguageQuestions(mock_selector)
+
+        assert handler.select_option == mock_selector
+
+    def test_handle_returns_config_dict(self, monkeypatch):
+        """Handle should return a configuration dictionary."""
+        mock_selector = lambda **kwargs: "python"
+        handler = HandleSingleLanguageQuestions(mock_selector)
+
+        # Mock click.echo to avoid output during test
+        monkeypatch.setattr("click.echo", lambda x: None)
+
+        config = handler.handle("single-language")
+
+        assert isinstance(config, dict)
+        assert "defaults" in config
+
+    def test_python_questions_in_config(self, monkeypatch):
+        """Python questions should populate config defaults."""
+        mock_selector = lambda **kwargs: "pytest" if "pytest" in kwargs.get("options", []) else "python"
+        handler = HandleSingleLanguageQuestions(mock_selector)
+
+        # Mock click.echo to avoid output during test
+        monkeypatch.setattr("click.echo", lambda x: None)
+
+        config = handler.handle("single-language")
+
+        assert "defaults" in config
+        # Config should have some defaults populated
+        assert isinstance(config["defaults"], dict)
