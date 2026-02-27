@@ -20,3 +20,102 @@ javascript:
   - TypeScriptPackageManagerQuestion
   - TypeScriptTestFrameworkQuestion
   - TypeScriptFrameworkQuestion
+
+go:
+  - GoVersionQuestion
+  - GoLinterQuestion
+  - GoFormatterQuestion
+  - GoTestFrameworkQuestion
+
+rust:
+  - RustVersionQuestion
+  - RustPackageManagerQuestion
+  - RustLinterQuestion
+  - RustFormatterQuestion
+  - RustTestFrameworkQuestion
+
+java:
+  - JavaVersionQuestion
+  - JavaBuildToolQuestion
+  - JavaLinterQuestion
+  - JavaTestFrameworkQuestion
+
+csharp:
+  - CSharpVersionQuestion
+  - CSharpFrameworkQuestion
+  - CSharpTestFrameworkQuestion
+
+ruby:
+  - RubyVersionQuestion
+  - RubyPackageManagerQuestion
+  - RubyLinterQuestion
+  - RubyTestFrameworkQuestion
+
+php:
+  - PhpVersionQuestion
+  - PhpPackageManagerQuestion
+  - PhpTestFrameworkQuestion
+
+swift:
+  - SwiftVersionQuestion
+  - SwiftPackageManagerQuestion
+  - SwiftTestFrameworkQuestion
+
+kotlin:
+  - KotlinVersionQuestion
+  - KotlinBuildToolQuestion
+  - KotlinTestFrameworkQuestion
+
+scala:
+  - ScalaVersionQuestion
+  - ScalaBuildToolQuestion
+  - ScalaTestFrameworkQuestion
+
+elixir:
+  - ElixirVersionQuestion
+  - ElixirTestFrameworkQuestion
+
+elm:
+  - ElmVersionQuestion
+  - ElmTestFrameworkQuestion
+
+haskell:
+  - HaskellCompilerQuestion
+  - HaskellBuildToolQuestion
+
+clojure:
+  - ClojureVersionQuestion
+  - ClojureBuildToolQuestion
+
+fsharp:
+  - FSharpVersionQuestion
+  - FSharpFrameworkQuestion
+
+dart:
+  - DartVersionQuestion
+  - DartTestFrameworkQuestion
+
+julia:
+  - JuliaVersionQuestion
+  - JuliaPackageManagerQuestion
+
+lua:
+  - LuaVersionQuestion
+  - LuaTestFrameworkQuestion
+
+r:
+  - RVersionQuestion
+  - RPackageManagerQuestion
+
+shell:
+  - ShellTypeQuestion
+  - ShellLinterQuestion
+
+groovy:
+  - GroovyVersionQuestion
+
+terraform:
+  - TerraformVersionQuestion
+
+sql:
+  - SqlDialectQuestion
