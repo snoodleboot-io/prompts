@@ -108,7 +108,7 @@ def init_prompts():
     your language, runtime, package manager, testing framework, and more.
     """
 
-    from promptcli.ui import select_option_with_explain
+    from promptcli.ui._selector import select_option_with_explain
 
     click.echo("\n" + "=" * 60)
     click.secho("  Prompt CLI Initialization", bold=True, fg="cyan")
