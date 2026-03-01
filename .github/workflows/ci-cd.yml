@@ -56,8 +56,8 @@ jobs:
       - name: Run Ruff format check
         run: uv run ruff format --check .
 
-      - name: Run type checking with mypy
-        run: uv run mypy promptcli --ignore-missing-imports
+      - name: Run type checking with pyright
+        run: uv run pyright
 
   unit-tests:
     name: Unit Tests (Python ${{ matrix.python-version }})
