@@ -176,7 +176,7 @@ def validate_prompts():
     are unregistered (orphans).
     """
     click.echo("\n▶ Validating prompt registry...\n")
-    errors = registry.validate()
+    errors = registry.validate_files()
     if not errors:
         click.secho("  ✓ All good — no missing or orphaned files.", fg="green")
     else:

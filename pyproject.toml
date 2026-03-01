@@ -53,7 +53,7 @@ dev = [
     "pytest-cov>=7.0.0",
     "ruff>=0.8.0",
     "pre-commit>=4.0.0",
-    "mypy>=1.8.0",
+    "pyright>=1.1.389",
     "build>=1.0.0",
 ]
 
@@ -96,12 +96,15 @@ markers = [
     "unit: marks tests as unit tests",
 ]
 
-[tool.mypy]
-python_version = "3.10"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
-check_untyped_defs = true
-ignore_missing_imports = true
+[tool.pyright]
+pythonVersion = "3.10"
+include = ["promptcli"]
+exclude = ["tests", "**/__pycache__", ".venv"]
+ignore = [".venv"]
+strict = []
+typeCheckingMode = "standard"
+reportMissingImports = "warning"
+reportMissingTypeStubs = "warning"
+venvPath = "."
+venv = ".venv"
 
