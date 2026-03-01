@@ -3,9 +3,10 @@
 from collections.abc import Iterator
 
 from promptcli.ui.domain.events import InputEvent, InputEventType
+from promptcli.ui.domain.input_provider import InputProvider
 
 
-class WindowsInputProvider:
+class WindowsInputProvider(InputProvider):
     """Windows-specific input using msvcrt."""
 
     def get_events(self) -> Iterator[InputEvent]:

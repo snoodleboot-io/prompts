@@ -94,6 +94,7 @@ class Registry(BaseModel):
     ]
 
     # ── Mode registry ───────────────────────────────────────────────────────
+    # TODO: Discover This
     modes: dict[str, str] = {
         "architect": "Architect",
         "test": "Test",
@@ -111,6 +112,7 @@ class Registry(BaseModel):
     }
 
     # ── Files per mode ───────────────────────────────────────────────────────
+    # TODO: This should be auto-discoverable
     mode_files: dict[str, list[str]] = {
         "architect": [
             "architect-scaffold.md",
@@ -164,6 +166,7 @@ class Registry(BaseModel):
         "orchestrator": [
             "orchestrator-devops.md",
             "orchestrator-meta.md",
+            "orchestrator-pr-description.md",
         ],
     }
 

@@ -101,29 +101,44 @@ This document describes the GitHub Actions CI/CD pipeline for the `promptcli` pa
 
 ## Versioning Strategy
 
-The pipeline implements automatic semantic versioning based on branch type:
+The pipeline implements automatic semantic versioning based on event type:
 
-| Branch Type | Version Format | Example | Description |
-|-------------|----------------|---------|-------------|
-| `feat/*` | `MAJOR.MINOR.PATCH.devN` | `0.1.1.dev42` | Development release with patch increment |
-| `main` | `MAJOR.MINOR.PATCH` | `0.1.42` | Stable release with auto-incrementing patch |
-| PR to `main` | `MAJOR.MINOR.0rcN` | `0.2.0rc1` | Release candidate with minor bump |
+| Event Type | Version Format | Example | Publishes | Description |
+|------------|----------------|---------|-----------|-------------|
+| Push to non-main branch | `MAJOR.MINOR.PATCH.devN+SHA` | `0.1.1.dev42+abc1234` | No | Dev build for local testing |
+| Pull Request | `MAJOR.MINOR.PATCHrcN` | `0.1.1rc42` | TestPyPI | Release candidate with patch bump |
+| Push to `main` (merge) | `MAJOR.MINOR.0` | `0.2.0` | PyPI | Stable release with minor bump |
 
 ### Version Calculation
 
 The version is calculated by `.github/scripts/calculate_version.py`:
 
-1. **Base Version**: Read from `pyproject.toml` (currently `0.1.0`)
-2. **Patch Increment**: Based on `GITHUB_RUN_NUMBER`
-3. **Prerelease Suffix**: Based on branch type
+1. **MAJOR**: Configured via `MAJOR_VERSION` env var in workflow (default: 0)
+2. **MINOR**: Read from `pyproject.toml`, incremented on main merge
+3. **PATCH**: Read from `pyproject.toml`, incremented on PR builds
+4. **Build Number**: Based on `GITHUB_RUN_NUMBER`
+
+### Major Version Configuration
+
+The major version is configured in `.github/workflows/ci-cd.yml`:
+
+```yaml
+env:
+  MAJOR_VERSION: "0"  # Change this for breaking releases
+```
+
+When `MAJOR_VERSION` is changed, the minor version resets to 0:
+- pyproject.toml: `0.5.3` with `MAJOR_VERSION=1` → Release: `1.0.0`
 
 ### Base Version Management
 
-To bump the base version (MAJOR or MINOR):
+The `pyproject.toml` version serves as the base for calculating next versions:
+- `version = "0.1.0"` → PR builds: `0.1.1rcN`, Main builds: `0.2.0`
 
+To prepare for a new release cycle, update `pyproject.toml`:
 ```bash
-# Edit pyproject.toml and update version = "X.Y.Z"
-# The CI will calculate new versions from this base
+# For minor release: keep as-is, CI will increment
+# For major release: update MAJOR_VERSION env var in workflow
 ```
 
 ## Configuration
@@ -178,12 +193,19 @@ Create two environments in your GitHub repository settings:
 on:
   push:
     branches:
-      - main        # Triggers full pipeline with PyPI publish
-      - 'feat/**'   # Triggers full pipeline with Test PyPI publish
+      - main        # Triggers full pipeline with PyPI publish (minor bump)
   pull_request:
     branches:
-      - main        # Triggers test phase only (no publish)
+      - main        # Triggers full pipeline with TestPyPI publish (patch bump)
 ```
+
+### Publish Behavior Matrix
+
+| Event | Branch | Version Type | Publishes To |
+|-------|--------|--------------|--------------|
+| `push` | `main` | Stable (minor bump) | PyPI |
+| `push` | other | Dev build (.devN+SHA) | Nowhere (build only) |
+| `pull_request` | any | RC (patch bump) | TestPyPI |
 
 ## Concurrency Control
 

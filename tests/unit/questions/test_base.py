@@ -3,9 +3,9 @@
 import pytest
 
 from promptcli.questions.base.constants import (
-    REPO_TYPE_SINGLE,
-    REPO_TYPE_MULTI_FOLDER,
     REPO_TYPE_MIXED,
+    REPO_TYPE_MULTI_FOLDER,
+    REPO_TYPE_SINGLE,
     REPO_TYPES,
 )
 from promptcli.questions.base.folder_mapping_question import FolderMappingQuestion
