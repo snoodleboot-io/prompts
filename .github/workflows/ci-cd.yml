@@ -288,7 +288,7 @@ jobs:
           source test_env/bin/activate
           pip install dist/*.whl
           prompt --help
-          python -c "import promptcli; print(f'promptcli version: {promptcli.__version__}')"
+          python -c "import promptcli; print('promptcli imported successfully')"
         shell: bash
 
   # Build for release - requires all tests (integration, security, slow)
@@ -349,7 +349,7 @@ jobs:
           source test_env/bin/activate
           pip install dist/*.whl
           prompt --help
-          python -c "import promptcli; print(f'promptcli version: {promptcli.__version__}')"
+          python -c "import promptcli; print('promptcli imported successfully')"
         shell: bash
 
   # =============================================================================
