@@ -264,7 +264,7 @@ class Registry(BaseModel):
     }
 
     # ── Kilo mode definitions ───────────────────────────────────────────────
-    kilo_modes: dict[str, dict[str, str]] = {
+    kilo_modes: dict[str, dict[str, str | list[str]]] = {
         "architect": {
             "name": "🏗️ Architect",
             "description": "Scaffold projects, create task breakdowns, and design data models",
@@ -360,7 +360,7 @@ class Registry(BaseModel):
 
     # ── Computed properties ────────────────────────────────────────────────
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def all_registered_files(self) -> set[str]:
         """All files registered in the registry."""

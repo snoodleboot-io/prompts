@@ -14,7 +14,7 @@ class WindowsInputProvider(InputProvider):
         import msvcrt
 
         while True:
-            key = msvcrt.getch()
+            key = msvcrt.getch()  # type: ignore[attr-defined]
             yield self._parse_key(key, msvcrt)
 
     def _parse_key(self, key: bytes, msvcrt) -> InputEvent:
