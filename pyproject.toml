@@ -98,7 +98,7 @@ markers = [
 
 [tool.pyright]
 pythonVersion = "3.10"
-include = ["promptcli"]
+include = ["promptosaurus"]
 exclude = ["tests", "**/__pycache__", ".venv"]
 ignore = [".venv"]
 strict = []
