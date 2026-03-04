@@ -1,11 +1,11 @@
 # Python Conventions
 
-Language:             {{LANGUAGE}}           e.g., Python 3.11+
-Runtime:              {{RUNTIME}}            e.g., CPython 3.11, PyPy
-Package Manager:      {{PACKAGE_MANAGER}}        e.g., poetry, pip, uv
-Linter:               {{LINTER}}             e.g., Ruff, flake8
-Formatter:           {{FORMATTER}}          e.g., Ruff, Black
-Abstract Class Style: {{ABSTRACT_CLASS_STYLE}}  e.g., abc, interface
+Language:             python           e.g., Python 3.11+
+Runtime:              3.14            e.g., CPython 3.11, PyPy
+Package Manager:      uv        e.g., poetry, pip, uv
+Linter:               ruff, pyright             e.g., Ruff, flake8
+Formatter:           ruff          e.g., Ruff, Black
+Abstract Class Style: interface  e.g., abc, interface
 
 ## Python-Specific Rules
 
@@ -65,12 +65,12 @@ Abstract Class Style: {{ABSTRACT_CLASS_STYLE}}  e.g., abc, interface
 ### Testing
 
 #### Coverage Targets
-Line:           {{LINE_COVERAGE_%}}          e.g., 80%
-Branch:         {{BRANCH_COVERAGE_%}}        e.g., 70%
-Function:       {{FUNCTION_COVERAGE_%}}       e.g., 90%
-Statement:      {{STATEMENT_COVERAGE_%}}      e.g., 85%
-Mutation:       {{MUTATION_COVERAGE_%}}       e.g., 80%
-Path:           {{PATH_COVERAGE_%}}           e.g., 60%
+Line:           80          e.g., 80%
+Branch:         70        e.g., 70%
+Function:       90       e.g., 90%
+Statement:      85      e.g., 85%
+Mutation:       80       e.g., 80%
+Path:           60           e.g., 60%
 
 #### Test Types
 
@@ -97,7 +97,7 @@ Path:           {{PATH_COVERAGE_%}}           e.g., 60%
 - Test edge cases automatically generated
 
 #### Framework & Tools
-Framework:         {{TESTING_FRAMEWORK}}       e.g., pytest
+Framework:         hybrid       e.g., pytest
 Mocking library:   {{MOCKING_LIBRARY}}             e.g., unittest.mock, pytest-mock
 Coverage tool:    {{COVERAGE_TOOL}}             e.g., pytest-cov, coverage.py
 Mutation tool:    {{MUTATION_TOOL}}        e.g., mutmut, pytest-mutmut
@@ -359,7 +359,7 @@ def create_handler(config: dict):
 
 ### Abstract Classes and Interfaces
 
-Selected Style: **{{ABSTRACT_CLASS_STYLE}}**
+Selected Style: **interface**
 
 {{#if ABSTRACT_CLASS_STYLE == "abc"}}
 #### Using Abstract Base Classes (abc module)

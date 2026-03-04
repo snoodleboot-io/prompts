@@ -96,7 +96,26 @@ def init_prompts():
     click.echo("\nUse ↑/↓ arrows, numbers, or Enter for defaults.")
 
     try:
-        # Step 1: Repository type
+        # Step 1: Select which AI assistant configurations to generate
+        ai_tools = select_option_with_explain(
+            question="Which AI assistant configurations would you like to generate?",
+            options=["kilo", "cline", "cursor", "copilot"],
+            explanations={
+                "kilo": "Kilo Code - .kilo/ directory with rules and custom modes",
+                "cline": "Cline - .clinerules file (concatenated rules)",
+                "cursor": "Cursor - .cursor/rules/ directory + .cursorrules",
+                "copilot": "GitHub Copilot - .github/copilot-instructions.md",
+            },
+            question_explanation="Select one or more AI assistants to configure. Use space to select multiple.",
+            default_index=0,
+            allow_multiple=True,
+        )
+        # Normalize to list for consistent handling
+        if isinstance(ai_tools, str):
+            ai_tools = [ai_tools]
+
+        # Step 2: Repository type
+        click.echo("\n" + "-" * 60)
         repo_question = RepositoryTypeQuestion()
         default_idx = repo_question.options.index(repo_question.default)
 
@@ -108,7 +127,7 @@ def init_prompts():
             default_index=default_idx,
         )
 
-        # Step 2 & 3: Handle language questions based on repo type
+        # Step 3 & 4: Handle language questions based on repo type
         # Use isinstance() for proper type narrowing from str | list[str] to str
         if isinstance(repo_type, str) and repo_type == REPO_TYPE_SINGLE:
             from promptosaurus.questions.handlers.handle_single_language_questions import (
@@ -131,25 +150,6 @@ def init_prompts():
                 )
                 config["defaults"]["language"] = language  # type: ignore[index]
 
-        # Step 4: Select which AI assistant configurations to generate
-        click.echo("\n" + "-" * 60)
-        ai_tools = select_option_with_explain(
-            question="Which AI assistant configurations would you like to generate?",
-            options=["kilo", "cline", "cursor", "copilot"],
-            explanations={
-                "kilo": "Kilo Code - .kilo/ directory with rules and custom modes",
-                "cline": "Cline - .clinerules file (concatenated rules)",
-                "cursor": "Cursor - .cursor/rules/ directory + .cursorrules",
-                "copilot": "GitHub Copilot - .github/copilot-instructions.md",
-            },
-            question_explanation="Select one or more AI assistants to configure. Use space to select multiple.",
-            default_index=0,
-            allow_multiple=True,
-        )
-        # Normalize to list for consistent handling
-        if isinstance(ai_tools, str):
-            ai_tools = [ai_tools]
-
         # Save configuration
         ConfigHandler.save_config(config)
 
@@ -169,7 +169,7 @@ def init_prompts():
                 builder_class = _get_builder(tool)
                 if builder_class:
                     builder = builder_class()
-                    actions = builder.build(output_path, dry_run=False)
+                    actions = builder.build(output_path, config=config, dry_run=False)
                     for action in actions:
                         click.echo(f"  {action}")
                 else:
