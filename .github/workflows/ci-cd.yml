@@ -348,8 +348,8 @@ jobs:
           python -m venv test_env
           source test_env/bin/activate
           pip install dist/*.whl
-          prompt --help
-          python -c "import promptcli; print('promptcli imported successfully')"
+          promptosaurus --help
+          python -c "import promptosaurus; print('promptosaurus imported successfully')"
         shell: bash
 
   # =============================================================================
@@ -429,7 +429,7 @@ jobs:
           # Verify CLI works
           promptosaurus --help
           # Verify import works
-          python -c "import promptcli; print(f'Successfully installed promptcli {promptcli.__version__} from TestPyPI')"
+          python -c "import promptosaurus; print(f'Successfully installed promptosaurus {promptosaurus.__version__} from TestPyPI')"
         shell: bash
 
   verify-pypi:
@@ -452,9 +452,9 @@ jobs:
           source verify_env/bin/activate
           pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.version }}
           # Verify CLI works
-          prompt --help
+          promptosaurus --help
           # Verify import works
-          python -c "import promptcli; print(f'Successfully installed promptcli {promptcli.__version__} from PyPI')"
+          python -c "import promptosaurus; print(f'Successfully installed promptosaurus {promptosaurus.__version__} from PyPI')"
         shell: bash
 
   # =============================================================================
