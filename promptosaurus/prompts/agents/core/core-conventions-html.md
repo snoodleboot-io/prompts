@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-html.md -->
-# HTML Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-html.md -->
+# Core Conventions HTML
 
 Language:             {{LANGUAGE}}           e.g., HTML5
 Version:              {{VERSION}}            e.g., HTML5, HTML4 Strict, XHTML5

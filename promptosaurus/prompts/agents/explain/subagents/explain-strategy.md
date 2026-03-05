@@ -1,28 +1,10 @@
-<!-- path: promptosaurus/prompts/explain-strategy.md -->
+<!-- path: promptosaurus/prompts/agents/explain/subagents/explain-strategy.md -->
 # Subagent - Explain Strategy
 
 Behavior when the user asks to explain code, a file, or a concept.
 
 Goal: the reader walks away able to modify the code confidently,
 not just having read a summary of it.
-
-## Prerequisites — Complete Before Any Work
-
-1. **Read All Core Configuration Files** (REQUIRED FIRST)
-   - Read Core System — Follow always-on behaviors and git branch protocol
-   - Read Core Conventions — Follow naming, structure, and error handling rules
-   - Read Core Session — Follow session management protocol
-   - Read Core Conventions {lang} — Follow language-specific conventions
-
-   ALL output must comply with these core files exactly.
-
-2. **Check Git Branch** (per Core System)
-   - Run: `git branch --show-current`
-   - If on `main`: STOP and create feature branch first
-
-3. **Initialize/Update Session** (per Core Session)
-   - Check `.prompty/session/` for existing session matching current branch
-   - Create or update session file with current mode
 
 ## Read First, Always
 

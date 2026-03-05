@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-kotlin.md -->
-# Kotlin Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-kotlin.md -->
+# Core Conventions Kotlin
 
 Language:             {{LANGUAGE}}           e.g., Kotlin 1.9
 Runtime:              {{RUNTIME}}            e.g., JVM 21, Kotlin/JS, Kotlin/Native

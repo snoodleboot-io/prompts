@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/ask-docs.md -->
+<!-- path: promptosaurus/prompts/agents/ask/subagents/ask-docs.md -->
 # Subagent - Ask Docs
 
 Behavior when the user asks to generate or improve documentation.

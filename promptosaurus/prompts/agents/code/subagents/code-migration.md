@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/code-migration.md -->
+<!-- path: promptosaurus/prompts/agents/code/subagents/code-migration.md -->
 # Subagent - Code Migration
 
 Behavior when migrating code patterns or implementations.

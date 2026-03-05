@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/architect-task-breakdown.md -->
+<!-- path: promptosaurus/prompts/agents/architect/subagents/architect-task-breakdown.md -->
 # Subagent - Architect Task Breakdown
 
 Behavior when the user asks to break down a feature, epic, or PRD into tasks.

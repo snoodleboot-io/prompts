@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-haskell.md -->
-# Haskell Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-haskell.md -->
+# Core Conventions Haskell
 
 Language:             {{LANGUAGE}}           e.g., Haskell 9.8
 Package Manager:      {{PACKAGE_MANAGER}}        e.g., Cabal, Stack

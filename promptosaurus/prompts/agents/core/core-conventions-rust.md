@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-rust.md -->
-# Rust Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-rust.md -->
+# Core Conventions Rust
 
 Language:             {{LANGUAGE}}           e.g., Rust 1.75
 Runtime:              {{RUNTIME}}            e.g., Native, WASM

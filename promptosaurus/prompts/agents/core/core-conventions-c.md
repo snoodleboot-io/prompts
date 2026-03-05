@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-c.md -->
-# C Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-c.md -->
+# Core Conventions C
 
 Language:             {{LANGUAGE}}           e.g., C17, C23
 Compiler:            {{RUNTIME}}            e.g., GCC, Clang, MSVC

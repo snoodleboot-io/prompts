@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/core.md -->
+<!-- path: promptosaurus/prompts/agents/core/core-conventions.md -->
 # Core Conventions
 
 Project coding standards - base conventions for all projects. 

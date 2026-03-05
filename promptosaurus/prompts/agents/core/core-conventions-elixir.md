@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-elixir.md -->
-# Elixir Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-elixir.md -->
+# Core Conventions Elixir
 
 Language:             {{LANGUAGE}}           e.g., Elixir 1.15+
 Runtime:              {{RUNTIME}}            e.g., OTP 26

@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/enforcement.md -->
+<!-- path: promptosaurus/prompts/agents/enforcement/enforcement.md -->
 # Enforcement
 
 Behavior when the user asks to enforce coding standards or check compliance against established conventions.

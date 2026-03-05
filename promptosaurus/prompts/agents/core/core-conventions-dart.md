@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-dart.md -->
-# Dart Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-dart.md -->
+# Core Conventions Dart
 
 Language:             {{LANGUAGE}}           e.g., Dart 3.2
 Runtime:              {{RUNTIME}}            e.g., Flutter, Dart VM

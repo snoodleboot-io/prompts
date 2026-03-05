@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-java.md -->
-# Java Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-java.md -->
+# Core Conventions Java
 
 Language:             {{LANGUAGE}}           e.g., Java 21
 Runtime:              {{RUNTIME}}            e.g., JDK 21, OpenJDK

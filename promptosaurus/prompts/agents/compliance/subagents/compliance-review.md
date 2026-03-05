@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/compliance-review.md -->
+<!-- path: promptosaurus/prompts/agents/compliance/subagents/compliance-review.md -->
 # Subagent - Compliance Review
 
 Behavior when the user asks for a compliance review of code, infrastructure, or data handling.
@@ -13,24 +13,6 @@ Out of scope: pure security vulnerabilities without a compliance angle — use S
 > by qualified legal and compliance counsel before relying on them for audits or
 > regulatory submissions. You are solely responsible for ensuring your systems meet
 > applicable regulatory requirements.
-
-## Prerequisites — Complete Before Any Work
-
-1. **Read All Core Configuration Files** (REQUIRED FIRST)
-   - Read Core System — Follow always-on behaviors and git branch protocol
-   - Read Core Conventions — Follow naming, structure, and error handling rules
-   - Read Core Session — Follow session management protocol
-   - Read Core Conventions {lang} — Follow language-specific conventions
-
-   ALL output must comply with these core files exactly.
-
-2. **Check Git Branch** (per Core System)
-   - Run: `git branch --show-current`
-   - If on `main`: STOP and create feature branch first
-
-3. **Initialize/Update Session** (per core-session.md)
-   - Check `.prompty/session/` for existing session matching current branch
-   - Create or update session file with current mode
 
 ## Step 1 — Establish Scope
 

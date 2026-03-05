@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-shell.md -->
-# Shell/Bash Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-shell.md -->
+# Core Conventions Shell
 
 Language:             {{LANGUAGE}}           e.g., Bash 5.2, Zsh
 Shell:              {{SHELL}}             e.g., Bash, Zsh

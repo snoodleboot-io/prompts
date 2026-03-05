@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-ruby.md -->
-# Ruby Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-ruby.md -->
+# Core Conventions Ruby
 
 Language:             {{LANGUAGE}}           e.g., Ruby 3.3
 Runtime:              {{RUNTIME}}            e.g., MRI, JRuby

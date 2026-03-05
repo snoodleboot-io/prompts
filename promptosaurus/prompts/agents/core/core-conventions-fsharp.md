@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-fsharp.md -->
-# F# Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-fsharp.md -->
+# Core Conventions F
 
 Language:             {{LANGUAGE}}           e.g., F# 7.0
 Runtime:              {{RUNTIME}}            e.g., .NET 8

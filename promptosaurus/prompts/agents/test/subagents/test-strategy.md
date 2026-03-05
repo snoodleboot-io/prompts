@@ -1,25 +1,7 @@
-<!-- path: promptosaurus/prompts/test-strategy.md -->
+<!-- path: promptosaurus/prompts/agents/test/subagents/test-strategy.md -->
 # Subagent - Test Strategy
 
 Behavior when the user asks to write, run, or improve tests.
-
-## Prerequisites — Complete Before Any Work
-
-1. **Read All Core Configuration Files** (REQUIRED FIRST)
-   - Read `core-system.md` — Follow always-on behaviors and git branch protocol
-   - Read `core-conventions.md` — Follow naming, structure, and error handling rules
-   - Read `core-session.md` — Follow session management protocol
-   - Read `core-conventions-{lang}.md` — Follow language-specific conventions
-
-   ALL output must comply with these core files exactly.
-
-2. **Check Git Branch** (per core-system.md)
-   - Run: `git branch --show-current`
-   - If on `main`: STOP and create feature branch first
-
-3. **Initialize/Update Session** (per core-session.md)
-   - Check `.prompty/session/` for existing session matching current branch
-   - Create or update session file with current mode
 
 The goal of this mode is coverage and edge-case thinking — not just
 making existing code pass. Think adversarially about what can break.
@@ -27,7 +9,7 @@ making existing code pass. Think adversarially about what can break.
 ## Before Writing Any Tests
 
 1. Read the source file(s) under test first — do not assume their shape.
-2. Read core-conventions.md for the test framework and mock library.
+2. Read Core Conventions for the test framework and mock library.
 3. Identify the public interface: what inputs go in, what outputs or
    side effects come out. Only test through that interface.
 4. If the code is untestable as written, say so and suggest the minimal

@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/code-boilerplate.md -->
+<!-- path: promptosaurus/prompts/agents/code/subagents/code-boilerplate.md -->
 # Subagent - Code Boilerplate
 
 Behavior when the user asks to generate boilerplate or structural code.

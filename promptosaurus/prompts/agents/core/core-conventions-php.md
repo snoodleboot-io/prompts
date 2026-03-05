@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-php.md -->
-# PHP Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-php.md -->
+# Core Conventions PHP
 
 Language:             {{LANGUAGE}}           e.g., PHP 8.3
 Runtime:              {{RUNTIME}}            e.g., PHP-FPM, Laravel Octane

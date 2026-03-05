@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/debug-rubber-duck.md -->
+<!-- path: promptosaurus/prompts/agents/debug/subagents/debug-rubber-duck.md -->
 # Subagent - Debug Rubber Duck
 
 Behavior when the user wants to think through a problem out loud.

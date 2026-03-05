@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/ask-decision-log.md -->
+<!-- path: promptosaurus/prompts/agents/ask/subagents/ask-decision-log.md -->
 # Subagent - Ask Decision Log
 
 Behavior when the user asks to record an architectural or technical decision.

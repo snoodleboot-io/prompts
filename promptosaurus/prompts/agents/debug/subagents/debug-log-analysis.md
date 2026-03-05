@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/debug-log-analysis.md -->
+<!-- path: promptosaurus/prompts/agents/debug/subagents/debug-log-analysis.md -->
 # Subagent - Debug Log Analysis
 
 Behavior when analyzing logs and traces.

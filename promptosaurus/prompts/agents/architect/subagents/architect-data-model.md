@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/architect-data-model.md -->
+<!-- path: promptosaurus/prompts/agents/architect/subagents/architect-data-model.md -->
 # Subagent - Architect Data Model
 
 Behavior when the user asks to design a data model or schema.

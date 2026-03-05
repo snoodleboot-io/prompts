@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-terraform.md -->
-# Terraform Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-terraform.md -->
+# Core Conventions Terraform
 
 Language:             {{LANGUAGE}}           e.g., Terraform 1.6+
 Provider:             {{PROVIDER}}           e.g., AWS, Azure, GCP

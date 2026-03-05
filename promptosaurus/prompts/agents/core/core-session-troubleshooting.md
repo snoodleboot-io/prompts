@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/core-session-troubleshooting.md -->
+<!-- path: promptosaurus/prompts/agents/core/core-session-troubleshooting.md -->
 # Core Session Troubleshooting
 
 ## Overview

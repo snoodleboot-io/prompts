@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-conventions-py.md -->
-# Python Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-python.md -->
+# Core Conventions Python
 
 Language:             {{LANGUAGE}}           e.g., Python 3.11+
 Runtime:              {{RUNTIME}}            e.g., CPython 3.11, PyPy

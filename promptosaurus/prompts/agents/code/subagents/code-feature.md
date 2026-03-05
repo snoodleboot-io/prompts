@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/code-feature.md -->
+<!-- path: promptosaurus/prompts/agents/code/subagents/code-feature.md -->
 # Subagent - Code Feature
 
 Behavior when the user asks to implement a feature.

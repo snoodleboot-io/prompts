@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-js.md -->
-# JavaScript Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-javascript.md -->
+# Core Conventions JavaScript
 
 Language:             {{LANGUAGE}}           e.g., JavaScript ES2024
 Runtime:              {{RUNTIME}}            e.g., Node.js 20, Deno, Bun

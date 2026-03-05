@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/core-session.md -->
+<!-- path: promptosaurus/prompts/agents/core/core-session.md -->
 # Core Session
 
 ## 🔴 CRITICAL: Session Management is MANDATORY

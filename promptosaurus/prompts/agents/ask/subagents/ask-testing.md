@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/ask-testing.md -->
+<!-- path: promptosaurus/prompts/agents/ask/subagents/ask-testing.md -->
 # Subagent - Ask Testing
 
 Behavior when the user asks to generate tests.

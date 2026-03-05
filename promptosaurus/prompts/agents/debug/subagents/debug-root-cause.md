@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/debug-root-cause.md -->
+<!-- path: promptosaurus/prompts/agents/debug/subagents/debug-root-cause.md -->
 # Subagent - Debug Root Cause
 
 Behavior when the user is debugging a bug or unexpected behavior.

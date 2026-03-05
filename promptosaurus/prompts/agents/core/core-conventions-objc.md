@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-objc.md -->
-# Objective-C Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-objc.md -->
+# Core Conventions Objective-C
 
 Language:             {{LANGUAGE}}           e.g., Objective-C
 Runtime:              {{RUNTIME}}            e.g., macOS, iOS

@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/code-refactor.md -->
+<!-- path: promptosaurus/prompts/agents/code/subagents/code-refactor.md -->
 # Subagent - Code Refactor
 
 Behavior when the user asks to refactor, simplify, or clean up code.

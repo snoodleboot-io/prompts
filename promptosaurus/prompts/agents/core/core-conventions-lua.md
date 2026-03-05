@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-lua.md -->
-# Lua Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-lua.md -->
+# Core Conventions Lua
 
 Language:             {{LANGUAGE}}           e.g., Lua 5.4
 Runtime:              {{RUNTIME}}            e.g., LuaJIT, Lua VM

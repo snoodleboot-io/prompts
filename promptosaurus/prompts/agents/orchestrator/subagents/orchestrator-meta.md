@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/orchestrator-meta.md -->
+<!-- path: promptosaurus/prompts/agents/orchestrator/subagents/orchestrator-meta.md -->
 # Subagent - Orchestrator Meta
 
 Meta-process behavior for orchestrator mode.

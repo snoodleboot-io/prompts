@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-ts.md -->
-# TypeScript Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-typescript.md -->
+# Core Conventions TypeScript
 
 Language:             {{LANGUAGE}}           e.g., TypeScript 5.x
 Runtime:              {{RUNTIME}}            e.g., Node 20, Deno, Bun

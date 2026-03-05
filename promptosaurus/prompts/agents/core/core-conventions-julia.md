@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-julia.md -->
-# Julia Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-julia.md -->
+# Core Conventions Julia
 
 Language:             {{LANGUAGE}}           e.g., Julia 1.10
 Package Manager:      {{PACKAGE_MANAGER}}        e.g., Pkg

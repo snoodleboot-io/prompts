@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/orchestrator-pr-description.md -->
+<!-- path: promptosaurus/prompts/agents/orchestrator/subagents/orchestrator-pr-description.md -->
 # Subagent - Orchestrator PR Description
 
 PR Description Generator
@@ -9,26 +9,6 @@ You are a senior engineer writing a Pull Request description that will be review
 ## Git Context Gathering
 
 Before writing the PR description, gather comprehensive context from the branch:
-
-### 1. Get Branch Information
-Run these git commands:
-- `git branch --show-current` - Get current branch name
-- `git log main..HEAD --oneline` - List commits ahead of main
-- `git diff --name-only main..HEAD` - List files changed
-- `git log main..HEAD --reverse --format="%ci" | head -1` - Get branch age (first commit date)
-
-### 2. Parse Branch Name for Context
-Extract information from branch name patterns:
-- **Ticket references:** PROJ-123, #789
-- **Branch type:** feat/, bugfix/, hotfix/
-- **Description:** The human-readable part after the type/ticket
-
-### 3. Analyze Commits
-Parse commit messages for:
-- **Conventional commit types:** feat, fix, refactor, test, docs, chore
-- **Scopes:** The part in parentheses (e.g., `feat(auth):`)
-- **Breaking changes:** Look for `BREAKING CHANGE:` footer
-- **Ticket references:** In commit messages
 
 ### 4. Detect PR Type
 Determine if this is:

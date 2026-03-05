@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-sql.md -->
-# SQL Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-sql.md -->
+# Core Conventions SQL
 
 Database:            {{DATABASE}}           e.g., PostgreSQL, MySQL, SQLite
 ORM/Query:           {{ORM_QUERY_BUILDER}}                e.g., Prisma, SQLAlchemy, GORM, Drizzle

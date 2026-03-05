@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/code-house-style.md -->
+<!-- path: promptosaurus/prompts/agents/code/subagents/code-house-style.md -->
 # Subagent - Code House Style
 
 Behavior when the user asks to check or enforce house style.

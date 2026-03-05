@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/orchestrator-devops.md -->
+<!-- path: promptosaurus/prompts/agents/orchestrator/subagents/orchestrator-devops.md -->
 # Subagent - Orchestrator DevOps
 
 Behavior when the user asks for CI/CD, Docker, env config, or deployment tasks.

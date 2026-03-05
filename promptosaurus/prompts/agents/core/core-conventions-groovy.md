@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-groovy.md -->
-# Groovy Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-groovy.md -->
+# Core Conventions Groovy
 
 Language:             {{LANGUAGE}}           e 4.0.g., Groovy
 Runtime:              {{RUNTIME}}            e.g., JVM

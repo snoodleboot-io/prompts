@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-clojure.md -->
-# Clojure Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-clojure.md -->
+# Core Conventions Clojure
 
 Language:             {{LANGUAGE}}           e.g., Clojure 1.12
 Runtime:              {{RUNTIME}}            e.g., JVM

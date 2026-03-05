@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/document-strategy-for-applications.md -->
+<!-- path: promptosaurus/prompts/agents/document/subagents/document-strategy-for-applications.md -->
 # Subagent - Document Strategy for Applications
 
 ## Behavior when the user asks to generate, create or update documentation.

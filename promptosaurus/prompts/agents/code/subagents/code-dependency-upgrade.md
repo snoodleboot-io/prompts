@@ -1,4 +1,4 @@
-<!-- path: promptosaurus/prompts/code-dependency-upgrade.md -->
+<!-- path: promptosaurus/prompts/agents/code/subagents/code-dependency-upgrade.md -->
 # Subagent - Code Dependency Upgrade
 
 Behavior when upgrading dependencies.

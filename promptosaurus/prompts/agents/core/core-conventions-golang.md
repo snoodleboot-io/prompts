@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-go.md -->
-# Go Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-golang.md -->
+# Core Conventions Golang
 
 Language:             {{LANGUAGE}}           e.g., Go 1.22
 Runtime:              {{RUNTIME}}            e.g., Go runtime

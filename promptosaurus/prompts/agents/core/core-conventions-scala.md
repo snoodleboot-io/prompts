@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-scala.md -->
-# Scala Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-scala.md -->
+# Core Conventions Scala
 
 Language:             {{LANGUAGE}}           e.g., Scala 3.4
 Runtime:              {{RUNTIME}}            e.g., JVM 21

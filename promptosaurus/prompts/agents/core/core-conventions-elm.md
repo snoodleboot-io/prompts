@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-elm.md -->
-# Elm Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-elm.md -->
+# Core Conventions Elm
 
 Language:             {{LANGUAGE}}           e.g., Elm 0.19
 Runtime:              {{RUNTIME}}            e.g., Browser, Node.js

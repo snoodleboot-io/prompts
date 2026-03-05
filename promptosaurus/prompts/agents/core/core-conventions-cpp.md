@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-cpp.md -->
-# C++ Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-cpp.md -->
+# Core Conventions C++
 
 Language:             {{LANGUAGE}}           e.g., C++20, C++23
 Compiler:            {{RUNTIME}}            e.g., GCC, Clang, MSVC

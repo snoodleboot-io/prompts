@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-decision-log-template.md -->
-# Decision Log Template
+<!-- path: promptosaurus/prompts/agents/core/core-decision-log-template.md -->
+# Core Decision Log Template
 
 ## Purpose
 

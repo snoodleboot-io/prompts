@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-r.md -->
-# R Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-r.md -->
+# Core Conventions R
 
 Language:             {{LANGUAGE}}           e.g., R 4.3+
 Package Manager:      {{PACKAGE_MANAGER}}        e.g., renv, pacman

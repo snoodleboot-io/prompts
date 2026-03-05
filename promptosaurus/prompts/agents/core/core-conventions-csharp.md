@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-cs.md -->
-# C# Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-csharp.md -->
+# Core Conventions C#
 
 Language:             {{LANGUAGE}}           e.g., C# 12, .NET 8
 Runtime:              {{RUNTIME}}            e.g., .NET 8, Mono

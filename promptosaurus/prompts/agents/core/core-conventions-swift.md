@@ -1,5 +1,5 @@
-<!-- path: promptosaurus/prompts/core-swift.md -->
-# Swift Conventions
+<!-- path: promptosaurus/prompts/agents/core/core-conventions-swift.md -->
+# Core Conventions Swift
 
 Language:             {{LANGUAGE}}           e.g., Swift 5.9
 Runtime:              {{RUNTIME}}            e.g., macOS, iOS, Linux
