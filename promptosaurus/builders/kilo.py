@@ -1,11 +1,12 @@
 """
 builders/kilo.py
-Builds the .kilo/ directory structure for Kilo Code.
+Builds the .opencode/rules/ directory structure for Kilo Code.
 
 Output layout:
-  {output}/.kilo/rules/              ← always-on (all modes)
-  {output}/.kilo/rules-{mode}/       ← per-mode files
-  {output}/.kilocodemodes           ← manifest defining custom modes
+  {output}/AGENTS.md                    ← user guide
+  {output}/.opencode/rules/_base.md    ← collapsed core files
+  {output}/.opencode/rules/{MODE}.md   ← collapsed mode files (architect, code, ask, orchestrator, debug)
+  {output}/.kilocodemodes              ← manifest for remaining custom modes
 """
 
 import shutil
@@ -19,50 +20,60 @@ from promptosaurus.registry import registry
 
 
 class KiloBuilder(Builder):
-    """Builder for Kilo Code .kilo/ directory structure."""
+    """Builder for Kilo Code .opencode/rules/ directory structure."""
 
-    # Map of language names to their core-conventions file suffixes
+    # Map of language names to their core file suffixes
     LANGUAGE_FILE_MAP: dict[str, str] = {
-        "python": "core-conventions-py.md",
-        "typescript": "core-conventions-ts.md",
-        "javascript": "core-conventions-js.md",
-        "php": "core-conventions-php.md",
-        "ruby": "core-conventions-ruby.md",
-        "java": "core-conventions-java.md",
-        "csharp": "core-conventions-cs.md",
-        "go": "core-conventions-go.md",
-        "rust": "core-conventions-rust.md",
-        "r": "core-conventions-r.md",
-        "elixir": "core-conventions-elixir.md",
-        "elm": "core-conventions-elm.md",
-        "c": "core-conventions-c.md",
-        "cpp": "core-conventions-cpp.md",
-        "scala": "core-conventions-scala.md",
-        "kotlin": "core-conventions-kotlin.md",
-        "swift": "core-conventions-swift.md",
-        "objc": "core-conventions-objc.md",
-        "dart": "core-conventions-dart.md",
-        "julia": "core-conventions-julia.md",
-        "haskell": "core-conventions-haskell.md",
-        "clojure": "core-conventions-clojure.md",
-        "fsharp": "core-conventions-fsharp.md",
-        "shell": "core-conventions-shell.md",
-        "groovy": "core-conventions-groovy.md",
-        "lua": "core-conventions-lua.md",
-        "sql": "core-conventions-sql.md",
-        "terraform": "core-conventions-terraform.md",
-        "html": "core-conventions-html.md",
+        "python": "core-py.md",
+        "typescript": "core-ts.md",
+        "javascript": "core-js.md",
+        "php": "core-php.md",
+        "ruby": "core-ruby.md",
+        "java": "core-java.md",
+        "csharp": "core-cs.md",
+        "go": "core-go.md",
+        "rust": "core-rust.md",
+        "r": "core-r.md",
+        "elixir": "core-elixir.md",
+        "elm": "core-elm.md",
+        "c": "core-c.md",
+        "cpp": "core-cpp.md",
+        "scala": "core-scala.md",
+        "kotlin": "core-kotlin.md",
+        "swift": "core-swift.md",
+        "objc": "core-objc.md",
+        "dart": "core-dart.md",
+        "julia": "core-julia.md",
+        "haskell": "core-haskell.md",
+        "clojure": "core-clojure.md",
+        "fsharp": "core-fsharp.md",
+        "shell": "core-shell.md",
+        "groovy": "core-groovy.md",
+        "lua": "core-lua.md",
+        "sql": "core-sql.md",
+        "terraform": "core-terraform.md",
+        "html": "core-html.md",
     }
+
+    # Modes that are collapsed into single .opencode/rules/{MODE}.md files
+    COLLAPSED_MODES = ["architect", "code", "ask", "orchestrator", "debug"]
+
+    # Core files that get concatenated into _base.md
+    BASE_FILES = [
+        "core-system.md",
+        "core.md",
+        "core-session.md",
+    ]
 
     def build(
         self, output: Path, config: dict[str, Any] | None = None, dry_run: bool = False
     ) -> list[str]:
         """
-        Write the Kilo .kilo/ structure under `output`.
+        Write the Kilo .opencode/rules/ structure under `output`.
         Returns a list of action strings for display.
         """
         actions: list[str] = []
-        base = output / ".kilo"
+        rules_dir = output / ".opencode" / "rules"
 
         # Get selected language from config
         selected_language = config.get("defaults", {}).get("language", "") if config else ""
@@ -70,27 +81,38 @@ class KiloBuilder(Builder):
             self.LANGUAGE_FILE_MAP.get(selected_language.lower()) if selected_language else None
         )
 
-        # Always-on rules (filter language-specific files)
-        for filename in registry.always_on:
-            # Skip language-specific files that don't match the selected language
-            if filename.startswith("core-conventions-") and filename != language_file:
-                continue
+        # 1. Create AGENTS.md user guide
+        actions.append(self._create_agents_md(output, dry_run))
 
-            destination = base / "rules" / filename
-            actions.append(self._copy(registry.prompt_path(filename), destination, dry_run, config))
+        # 2. Create _base.md (collapsed core files + language convention)
+        actions.append(self._create_base_md(rules_dir, language_file, dry_run, config))
 
-        # Per-mode rules
-        for mode_key, files in registry.mode_files.items():
-            for filename in files:
-                destination = base / f"rules-{mode_key}" / registry.dest_name(mode_key, filename)
+        # 3. Create collapsed mode files for architect, code, ask, orchestrator, debug
+        for mode_key in self.COLLAPSED_MODES:
+            if mode_key in registry.mode_files:
                 actions.append(
-                    self._copy(registry.prompt_path(filename), destination, dry_run, config)
+                    self._create_collapsed_mode_md(
+                        rules_dir, mode_key, registry.mode_files[mode_key], dry_run, config
+                    )
                 )
 
-        # Generate .kilocodemodes manifest
+        # 4. Copy remaining mode files to old structure (for non-collapsed modes)
+        for mode_key, files in registry.mode_files.items():
+            if mode_key not in self.COLLAPSED_MODES:
+                # These modes still use the old per-file structure in .kilo/rules-{mode}/
+                base = output / ".kilo"
+                for filename in files:
+                    destination = (
+                        base / f"rules-{mode_key}" / registry.dest_name(mode_key, filename)
+                    )
+                    actions.append(
+                        self._copy(registry.prompt_path(filename), destination, dry_run, config)
+                    )
+
+        # 5. Generate .kilocodemodes manifest (only for non-collapsed modes)
         actions.append(self._write_manifest(output / ".kilocodemodes", dry_run))
 
-        # Build .kiloignore
+        # 6. Build .kiloignore
         actions.extend(self._build_ignore(output, dry_run))
 
         return actions
@@ -154,7 +176,7 @@ class KiloBuilder(Builder):
 
         # If config is provided and this is a language-specific conventions file,
         # perform template substitution
-        if config and source_path.name.startswith("core-conventions-"):
+        if config and source_path.name.startswith("core-"):
             content = source_path.read_text(encoding="utf-8")
             content = self._substitute_template_variables(content, config)
             destination.write_text(content, encoding="utf-8")
@@ -199,6 +221,184 @@ class KiloBuilder(Builder):
             content = content.replace(template_var, value)
 
         return content
+
+    def _create_agents_md(self, output: Path, dry_run: bool) -> str:
+        """Create AGENTS.md user guide."""
+        destination = output / "AGENTS.md"
+        label = "AGENTS.md"
+
+        content = """# Kilo Code Agents
+
+This directory contains the agent instructions for Kilo Code.
+
+## Structure
+
+- **`AGENTS.md`** (this file) — User guide for understanding the agents
+- **`.opencode/rules/_base.md`** — Core behaviors, conventions, and session management (always loaded)
+- **`.opencode/rules/{MODE}.md`** — Mode-specific behaviors for each agent
+
+## Available Agents
+
+### Core Agents (Built-in)
+
+These agents are built into Kilo Code and are always available:
+
+| Agent | Purpose |
+|-------|---------|
+| **Architect** | Scaffold projects, create task breakdowns, design data models |
+| **Code** | Feature implementation and boilerplate generation |
+| **Ask** | Q&A, decision logs, and documentation lookup |
+| **Orchestrator** | CI/CD, DevOps, and PR descriptions |
+| **Debug** | Root cause analysis, log analysis, and problem solving |
+
+### Custom Agents
+
+These agents are defined in `.kilocodemodes` and can be customized:
+
+| Agent | Purpose |
+|-------|---------|
+| **Test** | Write comprehensive tests with coverage-first approach |
+| **Refactor** | Improve code structure while preserving behavior |
+| **Document** | Generate documentation, READMEs, and changelogs |
+| **Explain** | Code walkthroughs and onboarding assistance |
+| **Migration** | Handle dependency upgrades and framework migrations |
+| **Review** | Code, performance, and accessibility reviews |
+| **Security** | Security reviews for code and infrastructure |
+| **Compliance** | SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS compliance |
+| **Enforcement** | Reviews code against established coding standards |
+| **Planning** | Develops PRDs and works with architects to create ARDs |
+
+## Usage
+
+Switch between agents based on the task at hand. Each agent has specialized
+behaviors and will suggest switching when appropriate.
+
+## Configuration
+
+The `.opencode/rules/` directory contains the instruction files that define
+agent behaviors. The `opencode.json` file references these instructions:
+
+```json
+{
+  "instructions": [
+    "AGENTS.md",
+    ".opencode/rules/_base.md",
+    ".opencode/rules/{MODE}.md"
+  ]
+}
+```
+
+Replace `{MODE}` with the agent you want to use (architect, code, ask, etc.).
+"""
+
+        if dry_run:
+            return f"[dry-run] {label}"
+
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(content, encoding="utf-8")
+        return f"✓ {label}"
+
+    def _create_base_md(
+        self,
+        rules_dir: Path,
+        language_file: str | None,
+        dry_run: bool,
+        config: dict[str, Any] | None = None,
+    ) -> str:
+        """Create _base.md by concatenating core files."""
+        destination = rules_dir / "_base.md"
+        label = ".opencode/rules/_base.md"
+
+        if dry_run:
+            return f"[dry-run] {label}"
+
+        # Collect content from base files
+        parts: list[str] = []
+
+        for filename in self.BASE_FILES:
+            source_path = registry.prompt_path(filename)
+            if source_path.exists():
+                content = source_path.read_text(encoding="utf-8")
+                # Strip header comments
+                lines = content.splitlines(keepends=True)
+                start = 0
+                for i, line in enumerate(lines[:3]):
+                    stripped = line.strip()
+                    if stripped.startswith("# ") and (
+                        stripped.endswith(".md") or "Behavior when" in stripped
+                    ):
+                        start = i + 1
+                    elif stripped.startswith("<!--") and stripped.endswith("-->"):
+                        start = i + 1
+                parts.append("".join(lines[start:]))
+
+        # Add language-specific conventions if selected
+        if language_file:
+            source_path = registry.prompt_path(language_file)
+            if source_path.exists():
+                content = source_path.read_text(encoding="utf-8")
+                # Apply template substitution for language files
+                if config:
+                    content = self._substitute_template_variables(content, config)
+                # Strip header comments
+                lines = content.splitlines(keepends=True)
+                start = 0
+                for i, line in enumerate(lines[:3]):
+                    stripped = line.strip()
+                    if stripped.startswith("# ") and stripped.endswith(".md"):
+                        start = i + 1
+                    elif stripped.startswith("<!--") and stripped.endswith("-->"):
+                        start = i + 1
+                parts.append("".join(lines[start:]))
+
+        # Join all parts with clear separators
+        full_content = "\n---\n\n".join(parts)
+
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(full_content, encoding="utf-8")
+        return f"✓ {label}"
+
+    def _create_collapsed_mode_md(
+        self,
+        rules_dir: Path,
+        mode_key: str,
+        filenames: list[str],
+        dry_run: bool,
+        config: dict[str, Any] | None = None,
+    ) -> str:
+        """Create a collapsed {MODE}.md file from multiple subagent files."""
+        destination = rules_dir / f"{mode_key}.md"
+        label = f".opencode/rules/{mode_key}.md"
+
+        if dry_run:
+            return f"[dry-run] {label}"
+
+        # Collect content from all subagent files
+        parts: list[str] = []
+
+        for filename in filenames:
+            source_path = registry.prompt_path(filename)
+            if source_path.exists():
+                content = source_path.read_text(encoding="utf-8")
+                # Strip header comments
+                lines = content.splitlines(keepends=True)
+                start = 0
+                for i, line in enumerate(lines[:3]):
+                    stripped = line.strip()
+                    if stripped.startswith("# ") and (
+                        stripped.endswith(".md") or "Behavior when" in stripped
+                    ):
+                        start = i + 1
+                    elif stripped.startswith("<!--") and stripped.endswith("-->"):
+                        start = i + 1
+                parts.append("".join(lines[start:]))
+
+        # Join all parts with clear separators
+        full_content = "\n---\n\n".join(parts)
+
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(full_content, encoding="utf-8")
+        return f"✓ {label}"
 
     def _build_ignore(self, output: Path, dry_run: bool) -> list[str]:
         """Generate .kiloignore file."""
