@@ -34,7 +34,7 @@ git branch --show-current
 
 **1. MUST check for existing session:**
 ```bash
-ls -la .prompty/session/session_*.md 2>/dev/null
+ls -la .promptosaurus/sessions/session_*.md 2>/dev/null
 ```
 
 **2. MUST handle existing session or create new:**
@@ -44,14 +44,14 @@ ls -la .prompty/session/session_*.md 2>/dev/null
   - Update `current_mode` field to current mode
   - Add timestamp entry to Mode History if switching modes
 - If no session exists: MUST create one immediately
-  - Location: `.prompty/session/session_{YYYYMMDD}_{RANDOM}.md`
+  - Location: `.promptosaurus/sessions/session_{YYYYMMDD}_{RANDOM}.md`
   - Include YAML frontmatter with branch name
   - Initialize Mode History, Actions Taken, and Context Summary sections
 - Never proceed without a valid session
 
 **3. MANDATORY VERIFICATION (before doing any work):**
 ```
-- [ ] Session file exists in .prompty/session/: YES
+- [ ] Session file exists in .promptosaurus/sessions/: YES
 - [ ] Session file has YAML frontmatter: YES
 - [ ] Session branch matches current branch: YES
 - [ ] Session has Mode History section: YES

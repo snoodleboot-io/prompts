@@ -253,7 +253,7 @@ class TestKiloCustomModes(unittest.TestCase):
             builder.build(output, dry_run=False)
             # Check that built-in mode directories are NOT created
             for mode in KiloCodeBuilder.KILO_BUILTIN_MODES:
-                mode_dir = output / ".kilo" / f"rules-{mode}"
+                mode_dir = output / ".kilocode" / f"rules-{mode}"
                 assert not mode_dir.exists(), f"rules-{mode}/ should NOT exist (built-in mode)"
 
 

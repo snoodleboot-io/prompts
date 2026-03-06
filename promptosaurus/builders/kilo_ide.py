@@ -1,9 +1,10 @@
 """
 builders/kilo_ide.py
-Kilo Code IDE builder - outputs .kilo/rules-{mode}/ structure.
+Kilo Code IDE builder - outputs .kilocode/rules-{mode}/ structure.
 
 Output layout:
-  {output}/.kilo/rules-{mode}/           ← per-mode directories with files
+  {output}/.kilocode/rules/                 ← core files (always loaded)
+  {output}/.kilocode/rules-{mode}/           ← per-mode directories with files
   {output}/.kilocodemodes                ← all mode definitions (for IDE)
   {output}/.kiloignore                  ← ignore patterns
 
@@ -18,13 +19,13 @@ from promptosaurus.registry import registry
 
 
 class KiloIDEBuilder(KiloCodeBuilder):
-    """Builder for Kilo Code .kilo/rules-{mode}/ directory structure (IDE format)."""
+    """Builder for Kilo Code .kilocode/rules-{mode}/ directory structure (IDE format)."""
 
     def build(
         self, output: Path, config: dict[str, Any] | None = None, dry_run: bool = False
     ) -> list[str]:
         """
-        Write the Kilo .kilo/rules-{mode}/ structure under `output`.
+        Write the Kilo .kilocode/rules-{mode}/ structure under `output`.
         Returns a list of action strings for display.
         """
         actions: list[str] = []
@@ -38,25 +39,44 @@ class KiloIDEBuilder(KiloCodeBuilder):
         # 1. Create AGENTS.md user guide
         actions.append(self._create_agents_md(output, dry_run))
 
-        # 2. Create core files (system, conventions, session)
-        # These are in .kilo/ directly for IDE
+        # 2. Create core files in .kilocode/ (for IDE compatibility - legacy location)
+        # These are in .kilocode/ directly for IDE
         for filename in self.BASE_FILES:
             source_path = registry.prompt_path(filename)
             if source_path.exists():
-                destination = output / ".kilo" / filename
+                destination = output / ".kilocode" / filename
                 actions.append(self._copy(source_path, destination, dry_run, config))
 
-        # 2. Add language-specific conventions if selected
+        # 2a. Create core files in .kilocode/rules/ (new location - core files without core- prefix)
+        for filename in self.BASE_FILES:
+            source_path = registry.prompt_path(filename)
+            if source_path.exists():
+                # Remove "core-" prefix from filename
+                new_filename = filename
+                if filename.startswith("core-"):
+                    new_filename = filename[5:]  # Remove "core-" prefix
+                destination = output / ".kilocode" / "rules" / new_filename
+                actions.append(self._copy(source_path, destination, dry_run, config))
+
+        # 2b. Add language-specific conventions to .kilocode/rules/ if selected
         if language_file:
             source_path = registry.prompt_path(language_file)
             if source_path.exists():
-                destination = output / ".kilo" / language_file
+                # Remove "core-" prefix from filename for .kilocode/rules/
+                new_filename = language_file
+                if language_file.startswith("core-"):
+                    new_filename = language_file[5:]  # Remove "core-" prefix
+                # Copy to legacy location for IDE compatibility
+                destination = output / ".kilocode" / language_file
                 actions.append(self._copy(source_path, destination, dry_run, config))
+                # Copy to new .kilocode/rules/ location with renamed file
+                destination_rules = output / ".kilocode" / "rules" / new_filename
+                actions.append(self._copy(source_path, destination_rules, dry_run, config))
 
         # 3. Create per-mode directories with their subagent files (custom modes only)
         for mode_key in self.custom_modes:
             if mode_key in registry.mode_files:
-                mode_dir = output / ".kilo" / f"rules-{mode_key}"
+                mode_dir = output / ".kilocode" / f"rules-{mode_key}"
                 for filename in registry.mode_files[mode_key]:
                     source_path = registry.prompt_path(filename)
                     if source_path.exists():
@@ -80,35 +100,35 @@ This directory contains the agent instructions for Kilo Code (IDE format).
 ## Structure
 
 - **`AGENTS.md`** (this file) — User guide for understanding the agents
-- **`.kilo/`** — Core behaviors and conventions
-- **`.kilo/rules-{mode}/`** — Mode-specific behaviors for each agent
+- **`.kilocode/rules/`** — Core behaviors and conventions (always loaded)
+- **`.kilocode/rules-{mode}/`** — Mode-specific behaviors for each agent
 
 ## Core Instructions
 
-The `.kilo/` directory contains core files that are always loaded:
-- `core-system.md` — Core system behaviors
-- `core.md` — General conventions
-- `core-session.md` — Session management
-- `core-{language}.md` — Language-specific conventions (if configured)
+The `.kilocode/rules/` directory contains core files that are always loaded:
+- `system.md` — Core system behaviors
+- `conventions.md` — General conventions
+- `session.md` — Session management
+- `{language}.md` — Language-specific conventions (if configured)
 
-**Important:** Always load the core files from `.kilo/` for any task, as they contain the foundational behaviors and conventions for this project.
+**Important:** Always load the core files from `.kilocode/rules/` for any task, as they contain the foundational behaviors and conventions for this project.
 
 ## Available Agents
 
-Each agent has its own directory under `.kilo/rules-{mode}/`:
+Each agent has its own directory under `.kilocode/rules-{mode}/`:
 
 | Mode | Directory | Purpose |
 |------|-----------|---------|
-| **test** | `.kilo/rules-test/` | Write comprehensive tests with coverage-first approach |
-| **refactor** | `.kilo/rules-refactor/` | Improve code structure while preserving behavior |
-| **document** | `.kilo/rules-document/` | Generate documentation, READMEs, and changelogs |
-| **explain** | `.kilo/rules-explain/` | Code walkthroughs and onboarding assistance |
-| **migration** | `.kilo/rules-migration/` | Handle dependency upgrades and framework migrations |
-| **review** | `.kilo/rules-review/` | Code, performance, and accessibility reviews |
-| **security** | `.kilo/rules-security/` | Security reviews for code and infrastructure |
-| **compliance** | `.kilo/rules-compliance/` | SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS compliance |
-| **enforcement** | `.kilo/rules-enforcement/` | Reviews code against established coding standards |
-| **planning** | `.kilo/rules-planning/` | Develops PRDs and works with architects to create ARDs |
+| **test** | `.kilocode/rules-test/` | Write comprehensive tests with coverage-first approach |
+| **refactor** | `.kilocode/rules-refactor/` | Improve code structure while preserving behavior |
+| **document** | `.kilocode/rules-document/` | Generate documentation, READMEs, and changelogs |
+| **explain** | `.kilocode/rules-explain/` | Code walkthroughs and onboarding assistance |
+| **migration** | `.kilocode/rules-migration/` | Handle dependency upgrades and framework migrations |
+| **review** | `.kilocode/rules-review/` | Code, performance, and accessibility reviews |
+| **security** | `.kilocode/rules-security/` | Security reviews for code and infrastructure |
+| **compliance** | `.kilocode/rules-compliance/` | SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS compliance |
+| **enforcement** | `.kilocode/rules-enforcement/` | Reviews code against established coding standards |
+| **planning** | `.kilocode/rules-planning/` | Develops PRDs and works with architects to create ARDs |
 
 > **Note:** The architect, code, ask, debug, and orchestrator modes are built-in to Kilo and are not generated here.
 
@@ -120,5 +140,5 @@ behaviors and will suggest switching when appropriate.
 ## Configuration
 
 The KiloCode IDE extensions automatically load the appropriate mode instructions
-from the `.kilo/` directory based on the current mode selection.
+from the `.kilocode/` directory based on the current mode selection.
 """

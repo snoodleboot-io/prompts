@@ -102,7 +102,7 @@ def init_prompts():
             options=["kilo-cli", "kilo-ide", "cline", "cursor", "copilot"],
             explanations={
                 "kilo-cli": "Kilo Code (CLI) - .opencode/rules/ with collapsed mode files",
-                "kilo-ide": "Kilo Code (IDE) - .kilo/rules-{mode}/ directory structure",
+                "kilo-ide": "Kilo Code (IDE) - .kilocode/rules-{mode}/ directory structure",
                 "cline": "Cline - .clinerules file (concatenated rules)",
                 "cursor": "Cursor - .cursor/rules/ directory + .cursorrules",
                 "copilot": "GitHub Copilot - .github/copilot-instructions.md",

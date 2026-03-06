@@ -31,7 +31,7 @@ Session files provide persistent context across mode switches, enabling continui
 
 ## Session File Location
 
-- **Directory:** `.prompty/session/`
+- **Directory:** `.promptosaurus/sessions/`
 - **Naming:** `session_{YYYYMMDD}_{random}.md` (e.g., `session_20260302_a7x9k2.md`)
 - **Format:** Markdown with YAML frontmatter
 - **Git:** Session files are gitignored and NOT committed
@@ -274,13 +274,13 @@ Completed code review of PROJ-123-1. Found 2 blocking issues (error handling, ti
    - If on feature branch: use that branch name
 
 2. **Check for existing session:**
-   - List files in `.prompty/session/`
+   - List files in `.promptosaurus/sessions/`
    - Read each file's YAML frontmatter
    - Look for `branch:` field matching current branch
    - Find most recent session if multiple exist
 
 3. **If no session exists:**
-   - Create `.prompty/session/` directory if needed
+   - Create `.promptosaurus/sessions/` directory if needed
    - Create new session file using format above
    - Set `current_mode` to current mode
    - Record branch name and timestamp
@@ -329,10 +329,10 @@ Use format: `### {ISO8601 timestamp} - {mode} mode`
 - Completing work phase
 
 ### Session Rotation Guidelines:
-- Check age: `ls -l .prompty/session/`
+- Check age: `ls -l .promptosaurus/sessions/`
 - If oldest session is 1+ week old, consider archive
 - Keep last session for 30 days for historical reference
-- Archive old sessions: `mv session_*.md .prompty/session/archive/`
+- Archive old sessions: `mv session_*.md .promptosaurus/sessions/archive/`
 
 ---
 
@@ -362,10 +362,10 @@ This ensures continuity when switching between modes (e.g., Architect â†’ Code â
 ### Session file not found
 ```bash
 # Check if directory exists
-ls -la .prompty/session/
+ls -la .promptosaurus/sessions/
 
 # If directory doesn't exist, create it
-mkdir -p .prompty/session/
+mkdir -p .promptosaurus/sessions/
 
 # Create new session
 # (Follow session file format from above)
@@ -374,10 +374,10 @@ mkdir -p .prompty/session/
 ### Multiple sessions for same branch
 ```bash
 # Check which sessions exist
-ls -la .prompty/session/
+ls -la .promptosaurus/sessions/
 
 # Read each session's branch field
-for file in .prompty/session/session_*.md; do
+for file in .promptosaurus/sessions/session_*.md; do
   echo "=== $file ===" && head -5 "$file"
 done
 
@@ -391,7 +391,7 @@ done
 git branch --show-current
 
 # Check session branch
-grep "^branch:" .prompty/session/session_*.md
+grep "^branch:" .promptosaurus/sessions/session_*.md
 
 # If mismatch:
 # Option 1: Create new session for current branch
@@ -415,6 +415,6 @@ grep "^branch:" .prompty/session/session_*.md
 # Option 2: Create new session (old one is still readable as backup)
 
 # Check YAML syntax
-head -10 .prompty/session/session_*.md
+head -10 .promptosaurus/sessions/session_*.md
 # Should see lines: ---, session_id:, branch:, created_at:, current_mode:, version:, ---
 ```

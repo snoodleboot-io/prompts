@@ -97,8 +97,8 @@ class KiloCodeBuilder(Builder, ABC):
         dry_run: bool,
         config: dict[str, Any] | None = None,
     ) -> str:
-        rel = str(destination).split(".kilo/", 1)[-1]
-        label = f".kilo/{rel}"
+        rel = str(destination).split(".kilocode/", 1)[-1]
+        label = f".kilocode/{rel}"
         if dry_run:
             return f"[dry-run] {source_path.name} → {label}"
         destination.parent.mkdir(parents=True, exist_ok=True)
