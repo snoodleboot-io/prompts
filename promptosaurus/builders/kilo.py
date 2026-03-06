@@ -1,15 +1,12 @@
 """
 builders/kilo.py
-Builds the .opencode/rules/ directory structure for Kilo Code.
+Base class for Kilo Code configuration builders.
 
-Output layout:
-  {output}/AGENTS.md                    ← user guide
-  {output}/.opencode/rules/_base.md    ← collapsed core files
-  {output}/.opencode/rules/{MODE}.md   ← collapsed mode files (architect, code, ask, orchestrator, debug)
-  {output}/.kilocodemodes              ← manifest for remaining custom modes
+Common functionality shared between CLI and IDE targets.
 """
 
 import shutil
+from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any
 
@@ -19,8 +16,24 @@ from promptosaurus.builders.builder import Builder
 from promptosaurus.registry import registry
 
 
-class KiloBuilder(Builder):
-    """Builder for Kilo Code .opencode/rules/ directory structure."""
+class KiloCodeBuilder(Builder, ABC):
+    """Base builder for Kilo Code configurations."""
+
+    # Modes that are built-in to Kilo and should not be generated in output
+    KILO_BUILTIN_MODES = frozenset(
+        {
+            "architect",
+            "code",
+            "ask",
+            "debug",
+            "orchestrator",
+        }
+    )
+
+    @property
+    def custom_modes(self) -> list[str]:
+        """Return list of custom modes (excluding built-in Kilo modes)."""
+        return [m for m in registry.modes.keys() if m not in self.KILO_BUILTIN_MODES]
 
     # Map of language names to their core file suffixes
     LANGUAGE_FILE_MAP: dict[str, str] = {
@@ -55,9 +68,6 @@ class KiloBuilder(Builder):
         "html": "core-html.md",
     }
 
-    # All modes are collapsed into single .opencode/rules/{MODE}.md files
-    # (modes are sourced from registry.modes)
-
     # Core files that get concatenated into _base.md
     BASE_FILES = [
         "core-system.md",
@@ -65,116 +75,20 @@ class KiloBuilder(Builder):
         "core-session.md",
     ]
 
+    @abstractmethod
     def build(
         self, output: Path, config: dict[str, Any] | None = None, dry_run: bool = False
     ) -> list[str]:
         """
-        Write the Kilo .opencode/rules/ structure under `output`.
+        Build Kilo Code configuration. Subclasses implement specific output formats.
         Returns a list of action strings for display.
         """
-        actions: list[str] = []
-        rules_dir = output / ".opencode" / "rules"
+        pass
 
-        # Get selected language from config
-        selected_language = config.get("defaults", {}).get("language", "") if config else ""
-        language_file = (
-            self.LANGUAGE_FILE_MAP.get(selected_language.lower()) if selected_language else None
-        )
-
-        # 1. Create AGENTS.md user guide
-        actions.append(self._create_agents_md(output, dry_run))
-
-        # 2. Create _base.md (collapsed core files + language convention)
-        actions.append(self._create_base_md(rules_dir, language_file, dry_run, config))
-
-        # 3. Create collapsed mode files for all modes
-        for mode_key in registry.modes.keys():
-            if mode_key in registry.mode_files:
-                actions.append(
-                    self._create_collapsed_mode_md(
-                        rules_dir, mode_key, registry.mode_files[mode_key], dry_run, config
-                    )
-                )
-
-        # 4. Generate opencode.json and .kilocodemodes manifest
-        actions.append(self._create_opencode_json(output, dry_run))
-        actions.append(self._write_manifest(output / ".kilocodemodes", dry_run))
-
-        # 5. Build .kiloignore
-        actions.extend(self._build_ignore(output, dry_run))
-
-        return actions
-
-    def _create_opencode_json(self, output: Path, dry_run: bool) -> str:
-        """Generate opencode.json configuration file."""
-        destination = output / "opencode.json"
-        label = "opencode.json"
-
-        # Build instructions array - AGENTS.md, _base.md, and all mode files
-        instructions = [
-            "AGENTS.md",
-            ".opencode/rules/_base.md",
-        ]
-        # Add all mode files
-        for mode_key in sorted(registry.modes.keys()):
-            instructions.append(f".opencode/rules/{mode_key}.md")
-
-        data = {
-            "instructions": instructions,
-        }
-
-        import json
-
-        content = json.dumps(data, indent=2)
-
-        if dry_run:
-            return f"[dry-run] {label}"
-        destination.write_text(content, encoding="utf-8")
-        return f"✓ {label}"
-
-    def _write_manifest(self, destination: Path, dry_run: bool) -> str:
-        """Write the .kilocodemodes manifest file."""
-        # Build data structure for YAML
-        modes = []
-        for mode_key, mode_info in registry.kilo_modes.items():
-            mode_data = {
-                "slug": mode_key,
-                "name": mode_info.get("name", mode_key.title()),
-                "description": mode_info.get("description", ""),
-                "roleDefinition": mode_info.get("roleDefinition", ""),
-                "whenToUse": mode_info.get("whenToUse", ""),
-                "groups": mode_info.get("groups", ["read", "edit", "command"]),
-            }
-            modes.append(mode_data)
-
-        data = {"customModes": modes}
-
-        # Generate YAML
-        content = yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False)
-
-        # Post-process: quote roleDefinition values that contain colons
-        lines = content.split("\n")
-        new_lines = []
-        for line in lines:
-            if line.startswith("    roleDefinition:"):
-                key, value = line.split(":", 1)
-                value = value.strip()
-                # Quote if contains colon and not already quoted
-                if ":" in value:
-                    # Escape backslashes first, then quotes
-                    value = value.replace("\\", "\\\\").replace('"', '\\"')
-                    value = '"' + value + '"'
-                line = f"{key}: {value}"
-            new_lines.append(line)
-
-        content = "\n".join(new_lines)
-
-        label = ".kilocodemodes"
-
-        if dry_run:
-            return f"[dry-run] {label}"
-        destination.write_text(content, encoding="utf-8")
-        return f"✓ {label}"
+    @abstractmethod
+    def _get_agents_md_content(self) -> str:
+        """Get the AGENTS.md content specific to the builder type."""
+        pass
 
     def _copy(
         self,
@@ -237,71 +151,62 @@ class KiloBuilder(Builder):
 
         return content
 
-    def _create_agents_md(self, output: Path, dry_run: bool) -> str:
-        """Create AGENTS.md user guide."""
-        destination = output / "AGENTS.md"
-        label = "AGENTS.md"
+    def _write_manifest(self, destination: Path, dry_run: bool) -> str:
+        """Write the .kilocodemodes manifest file."""
+        # Build data structure for YAML
+        modes = []
+        for mode_key, mode_info in registry.kilo_modes.items():
+            mode_data = {
+                "slug": mode_key,
+                "name": mode_info.get("name", mode_key.title()),
+                "description": mode_info.get("description", ""),
+                "roleDefinition": mode_info.get("roleDefinition", ""),
+                "whenToUse": mode_info.get("whenToUse", ""),
+                "groups": mode_info.get("groups", ["read", "edit", "command"]),
+            }
+            modes.append(mode_data)
 
-        content = """# Kilo Code Agents
+        data = {"customModes": modes}
 
-This directory contains the agent instructions for Kilo Code.
+        # Generate YAML
+        content = yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False)
 
-## Structure
+        # Post-process: quote roleDefinition values that contain colons
+        lines = content.split("\n")
+        new_lines = []
+        for line in lines:
+            if line.startswith("    roleDefinition:"):
+                key, value = line.split(":", 1)
+                value = value.strip()
+                # Quote if contains colon and not already quoted
+                if ":" in value:
+                    # Escape backslashes first, then quotes
+                    value = value.replace("\\", "\\\\").replace('"', '\\"')
+                    value = '"' + value + '"'
+                line = f"{key}: {value}"
+            new_lines.append(line)
 
-- **`AGENTS.md`** (this file) — User guide for understanding the agents
-- **`.opencode/rules/_base.md`** — Core behaviors, conventions, and session management (always loaded)
-- **`.opencode/rules/{MODE}.md`** — Mode-specific behaviors for each agent
+        content = "\n".join(new_lines)
 
-## Available Agents
-
-All agents are collapsed into individual `.opencode/rules/{MODE}.md` files:
-
-| Mode | Purpose |
-|------|---------|
-| **architect** | Scaffold projects, create task breakdowns, design data models |
-| **code** | Feature implementation and boilerplate generation |
-| **ask** | Q&A, decision logs, and documentation lookup |
-| **orchestrator** | CI/CD, DevOps, and PR descriptions |
-| **debug** | Root cause analysis, log analysis, and problem solving |
-| **test** | Write comprehensive tests with coverage-first approach |
-| **refactor** | Improve code structure while preserving behavior |
-| **document** | Generate documentation, READMEs, and changelogs |
-| **explain** | Code walkthroughs and onboarding assistance |
-| **migration** | Handle dependency upgrades and framework migrations |
-| **review** | Code, performance, and accessibility reviews |
-| **security** | Security reviews for code and infrastructure |
-| **compliance** | SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS compliance |
-| **enforcement** | Reviews code against established coding standards |
-| **planning** | Develops PRDs and works with architects to create ARDs |
-
-## Usage
-
-Switch between agents based on the task at hand. Each agent has specialized
-behaviors and will suggest switching when appropriate.
-
-## Configuration
-
-The `opencode.json` file references these instructions:
-
-```json
-{
-  "instructions": [
-    "AGENTS.md",
-    ".opencode/rules/_base.md",
-    ".opencode/rules/{MODE}.md"
-  ]
-}
-```
-
-Replace `{MODE}` with the agent you want to use (architect, code, ask, etc.).
-"""
+        label = ".kilocodemodes"
 
         if dry_run:
             return f"[dry-run] {label}"
-
-        destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(content, encoding="utf-8")
         return f"✓ {label}"
+
+    def _build_ignore(self, output: Path, dry_run: bool) -> list[str]:
+        """Generate .kiloignore file."""
+        destination = output / ".kiloignore"
+        content = registry.generate_kiloignore()
+
+        if dry_run:
+            lines = content.count("\n")
+            return [f"[dry-run] .kiloignore ({lines} lines)"]
+
+        destination.write_text(content, encoding="utf-8")
+        lines = content.count("\n")
+        return [f"✓ .kiloignore ({lines} lines)"]
 
     def _create_base_md(
         self,
@@ -405,15 +310,24 @@ Replace `{MODE}` with the agent you want to use (architect, code, ask, etc.).
         destination.write_text(full_content, encoding="utf-8")
         return f"✓ {label}"
 
-    def _build_ignore(self, output: Path, dry_run: bool) -> list[str]:
-        """Generate .kiloignore file."""
-        destination = output / ".kiloignore"
-        content = registry.generate_kiloignore()
+    def _create_agents_md(self, output: Path, dry_run: bool) -> str:
+        """Create AGENTS.md user guide."""
+        destination = output / "AGENTS.md"
+        label = "AGENTS.md"
+
+        # Get builder-specific content
+        content = self._get_agents_md_content()
 
         if dry_run:
-            lines = content.count("\n")
-            return [f"[dry-run] .kiloignore ({lines} lines)"]
+            return f"[dry-run] {label}"
 
+        destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(content, encoding="utf-8")
-        lines = content.count("\n")
-        return [f"✓ .kiloignore ({lines} lines)"]
+        return f"✓ {label}"
+
+
+# NOTE: For backwards compatibility, import KiloBuilder from:
+# - promptosaurus.builders.kilo_cli (CLI format, default)
+# - promptosaurus.builders.kilo_ide (IDE format)
+# - promptosaurus.builders (exports KiloBuilder as alias to KiloCLIBuilder)
+# - promptosaurus.builders.kilo (this file, exports KiloCodeBuilder base class)
