@@ -425,8 +425,8 @@ def _get_builder(tool: str):
     from promptosaurus.builders.cline import ClineBuilder
     from promptosaurus.builders.copilot import CopilotBuilder
     from promptosaurus.builders.cursor import CursorBuilder
-    from promptosaurus.builders.kilo_cli import KiloCLIBuilder
-    from promptosaurus.builders.kilo_ide import KiloIDEBuilder
+    from promptosaurus.builders.kilo.kilo_cli import KiloCLIBuilder
+    from promptosaurus.builders.kilo.kilo_ide import KiloIDEBuilder
 
     builders = {
         "kilo-cli": KiloCLIBuilder,

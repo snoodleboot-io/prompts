@@ -13,6 +13,7 @@ class QuestionContext(BaseModel):
     default_index: int = 0
     default_indices: set[int] = {0}
     allow_multiple: bool = False
+    none_index: int | None = None  # Index of option that is mutually exclusive (e.g., 'none')
 
     class Config:
         frozen = True

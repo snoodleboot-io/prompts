@@ -6,7 +6,11 @@ from promptosaurus.ui.state.selection_state import SelectionState
 
 
 class MultiSelectionState(SelectionState):
-    """Multi-selection state - immutable."""
+    """Multi-selection state - allows selecting multiple options.
+
+    This is the standard multi-select behavior where users can freely
+    select or deselect any number of options without mutual exclusion.
+    """
 
     def __init__(self, selected: set[int], max_index: int):
         self._selected = frozenset(selected)
@@ -21,6 +25,7 @@ class MultiSelectionState(SelectionState):
         """Toggle selection at index."""
         if index > self._max:
             return self
+
         new_selected = set(self._selected)
         if index in new_selected:
             new_selected.remove(index)
