@@ -11,7 +11,7 @@ class InputProvider:
     @property
     def events(self) -> Iterator[InputEvent]:
         """Yield input events."""
-        raise NotImplementedError("Subclasses must implement get_events()")
+        raise NotImplementedError("Subclasses must implement the events property")
 
     def supports_raw(self) -> bool:
         """Whether raw input is supported."""

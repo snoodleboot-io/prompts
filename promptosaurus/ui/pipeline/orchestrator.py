@@ -33,8 +33,8 @@ class PipelineOrchestrator:
             mode="select",
         )
 
-        # Create event generator
-        events = self.input_provider.get_events()
+        # Get event generator
+        events = self.input_provider.events
 
         while True:
             # Render current state

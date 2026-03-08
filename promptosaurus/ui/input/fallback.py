@@ -9,7 +9,8 @@ from promptosaurus.ui.domain.input_provider import InputProvider
 class FallbackInputProvider(InputProvider):
     """Fallback using standard input - no raw mode."""
 
-    def get_events(self) -> Iterator[InputEvent]:
+    @property
+    def events(self) -> Iterator[InputEvent]:
         """Yield input events from standard input."""
         user_input = input("Enter number(s), comma-separated: ").strip()
 

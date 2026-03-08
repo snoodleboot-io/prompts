@@ -9,7 +9,8 @@ from promptosaurus.ui.domain.input_provider import InputProvider
 class UnixInputProvider(InputProvider):
     """Unix-specific input using termios/tty."""
 
-    def get_events(self) -> Iterator[InputEvent]:
+    @property
+    def events(self) -> Iterator[InputEvent]:
         """Yield input events."""
         import sys
         import termios

@@ -1,11 +1,12 @@
 """Confirm command implementation."""
 
+from promptosaurus.ui.commands.command import Command
 from promptosaurus.ui.commands.result import CommandResult
 from promptosaurus.ui.domain.context import PipelineContext
 from promptosaurus.ui.state.multi_selection_state import MultiSelectionState
 
 
-class ConfirmCommand:
+class ConfirmCommand(Command):
     """Command to confirm selection."""
 
     def execute(self, context: PipelineContext) -> CommandResult:
