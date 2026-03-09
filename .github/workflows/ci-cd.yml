@@ -432,7 +432,7 @@ jobs:
         run: |
           python -m venv verify_env
           source verify_env/bin/activate
-          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.version }}
+          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ ${{ env.PACKAGE_NAME }}==${{ needs.build-release.outputs.version }}
           # Verify CLI works
           promptosaurus --help
           # Verify import works
@@ -457,7 +457,7 @@ jobs:
         run: |
           python -m venv verify_env
           source verify_env/bin/activate
-          pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.version }}
+          pip install ${{ env.PACKAGE_NAME }}==${{ needs.build-release.outputs.version }}
           # Verify CLI works
           promptosaurus --help
           # Verify import works
