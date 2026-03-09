@@ -44,9 +44,10 @@ class VersionCalculator:
                 version = data["info"]["version"]
 
                 # Parse version (handle formats like 1.2.3, 1.2.3-beta, etc.)
-                # Strip any pre-release/build suffixes like .post, .dev, etc.
-                # PEP 440: X.Y.Y.devN, X.Y.YaN, X.Y.YbN, X.Y.YrcN, X.Y.Y, X.Y.Y.postN
-                version = re.split(r"[.+-]", version)[0]
+                # Strip any pre-release/local suffixes
+                # PEP 440: X.Y.Y.devN, X.Y.YaN, X.Y.YbN, X.Y.YrcN, X.Y.Y, X.Y.Y.postN, X.Y.Y+local
+                # Only split on . and + to preserve the base version
+                version = re.split(r"[.+]", version)[0]
                 parts = version.split(".")
 
                 major = int(parts[0]) if len(parts) > 0 else 0
@@ -113,8 +114,9 @@ class VersionCalculator:
         version = f"{major}.{new_minor}.{pr_number}"
 
         # Append run number only for TestPyPI preview builds
+        # Use + for local version identifier (PEP 440) instead of - which becomes .post
         if is_testpypi and run_number:
-            version = f"{version}-{run_number}"
+            version = f"{version}+{run_number}"
 
         return version
 
