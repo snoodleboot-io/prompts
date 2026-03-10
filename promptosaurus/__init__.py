@@ -1,6 +1,7 @@
 """promptosaurus — prompt library build tool."""
 
 from importlib.metadata import version
+
 from sweet_tea.registry import Registry
 
 __version__ = version("promptosaurus")
